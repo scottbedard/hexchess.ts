@@ -1,0 +1,13 @@
+{
+  "main": "dist/index.js",
+  "name": "@bedard/hexchess.ts",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.1",
+    "rollup": "^4.28.0",
+    "typescript": "^5.7.2"
+  }
+}
