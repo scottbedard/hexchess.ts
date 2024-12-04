@@ -1,3 +1,2 @@
-export function double(n: number) {
-  return n * 2
-}
+export * from './board'
+export * from './constants'
