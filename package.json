@@ -1,5 +1,5 @@
 {
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "name": "@bedard/hexchess.ts",
   "type": "module",
   "scripts": {
@@ -8,6 +8,8 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.1",
     "rollup": "^4.28.0",
+    "rollup-plugin-esbuild-minify": "^1.1.2",
     "typescript": "^5.7.2"
-  }
+  },
+  "unpkg": "dist/index.min.js"
 }
