@@ -1,17 +1,16 @@
 import { defineConfig } from 'rollup'
 import { minify } from 'rollup-plugin-esbuild-minify'
-import pkg from './package.json' with { type: 'json' }
 import typescript from '@rollup/plugin-typescript'
 
 export default defineConfig({
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
+      file: 'dist/index.mjs',
       format: 'es',
     },
     {
-      file: pkg.unpkg,
+      file: 'dist/index.bundle.js',
       format: 'iife',
       name: 'Hexchess',
       plugins: [

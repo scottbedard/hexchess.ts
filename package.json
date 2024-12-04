@@ -3,7 +3,7 @@
   "name": "@bedard/hexchess.ts",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "test": "vitest"
   },
   "devDependencies": {
@@ -13,5 +13,5 @@
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   },
-  "unpkg": "dist/index.min.js"
+  "unpkg": "dist/index.bundle.js"
 }
