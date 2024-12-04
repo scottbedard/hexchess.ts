@@ -3,13 +3,15 @@
   "name": "@bedard/hexchess.ts",
   "type": "module",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "vitest"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.1",
     "rollup": "^4.28.0",
     "rollup-plugin-esbuild-minify": "^1.1.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   },
   "unpkg": "dist/index.min.js"
 }

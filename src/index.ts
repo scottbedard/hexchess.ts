@@ -1,3 +1,3 @@
-export function hello() {
-  return 'Hello, world!'
+export function hello(n: number) {
+  console.log(`Hello: ${n}`)
 }
