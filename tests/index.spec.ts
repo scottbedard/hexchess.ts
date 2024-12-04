@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
-import { hello } from '@/index'
+import { double } from '@/index'
 
-test('adds 1 + 2 to equal 3', () => {
-  hello(5)
+test('double', () => {
+  expect(double(2)).toBe(4)
 })

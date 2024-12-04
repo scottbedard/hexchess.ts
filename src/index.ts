@@ -1,3 +1,3 @@
-export function hello(n: number) {
-  console.log(`Hello: ${n}`)
+export function double(n: number) {
+  return n * 2
 }
