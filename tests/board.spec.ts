@@ -3,7 +3,6 @@ import { describe, expect, test } from 'vitest'
 import {
   type Direction,
   type Position,
-  type Vec,
   walk,
 } from '@/index'
 
