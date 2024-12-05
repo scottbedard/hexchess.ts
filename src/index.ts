@@ -1,9 +1,9 @@
 export {
-  walk,
+  walk
 } from './board'
 
 export {
   type Color,
   type Direction,
-  type Position,
+  type Position
 } from './types'

@@ -1,22 +1,53 @@
 import eslint from '@eslint/js'
+import stylistic from '@stylistic/eslint-plugin'
 import tseslint from 'typescript-eslint'
-import stylistic from '@stylistic/eslint-plugin-ts'
 
 export default tseslint.config(
+  // ignore dist directory
   {
     ignores: [
       'dist',
     ],
   },
+
+  // eslint rules
   eslint.configs.recommended,
   tseslint.configs.recommended,
   {
+    rules: {
+      'no-sparse-arrays': 'off',
+    },
+  },
+
+  // stylistic rules
+  {
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+      },
+    },
     plugins: {
-      '@stylistic/ts': stylistic
+      '@stylistic': stylistic,
     },
     rules: {
-      '@stylistic/ts/indent': ['error', 2],
-      'no-sparse-arrays': 'off',
-    }
-  },
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
+      '@stylistic/brace-style': ['error', '1tbs'],
+      '@stylistic/comma-dangle': ['error', {
+        arrays: 'always-multiline',
+        exports: 'never',
+        functions: 'never',
+        imports: 'never',
+        objects: 'always-multiline',
+      }],
+      '@stylistic/eol-last': ['error', 'always'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/indent-binary-ops': ['error', 2],
+      '@stylistic/no-multi-spaces': 'error',
+      '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }],
+      '@stylistic/no-trailing-spaces': 'error',
+      '@stylistic/padded-blocks': ['error', 'never'],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'never'],
+    },
+  }
 )

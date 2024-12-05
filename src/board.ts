@@ -5,7 +5,7 @@ import type { Direction, Position } from '@/types'
  * Traverse the board in a given direction
  */
 export function walk(from: Position, direction: Direction) {
-  const path = [];
+  const path = []
 
   let next = board[from][direction]
 
@@ -14,5 +14,5 @@ export function walk(from: Position, direction: Direction) {
     next = board[next][direction]
   }
 
-  return path;
+  return path
 }

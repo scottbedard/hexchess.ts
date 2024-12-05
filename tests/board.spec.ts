@@ -399,7 +399,7 @@ describe('walk', () => {
     { from: 'b1', direction: 10, expected: ['a1'] },
     { from: 'b1', direction: 11, expected: ['a2'] },
   ]
-  
+
   tests.forEach(t => {
     test(`${t.from} : ${t.direction} = ${t.expected.join(' → ')}`, () => {
       expect(walk(t.from, t.direction), `Board path ${t.from}:${t.direction} failed`).toEqual(t.expected)
