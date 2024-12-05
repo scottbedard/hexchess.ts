@@ -1,10 +1,6 @@
 import { describe, expect, test } from 'vitest'
-
-import {
-  type Direction,
-  type Position,
-  walk,
-} from '@/index'
+import { walk } from '@/board'
+import type { Direction, Position } from '@/types'
 
 // use the perimeter to walk across every position in every direction
 describe('walk', () => {

@@ -1,9 +1,9 @@
 import type { Vec } from '@/types'
 
 /**
- * Board coordinates with their corresponding FEN position.
+ * Board positions in FEN order.
  */
-export const position = [
+export const positions = [
   'f11',
   'e10',
   'f10',
@@ -103,8 +103,8 @@ export const position = [
  * The first sibling is at 12 o'clock, the second is at 1 o'clock, and so on.
  */
 export const board: Record<
-  typeof position[number],
-  Vec<12, typeof position[number] | undefined>
+  typeof positions[number],
+  Vec<12, typeof positions[number] | undefined>
 > = {
   a1: [
     'a2',

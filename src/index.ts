@@ -1,3 +1,9 @@
-export * from './board'
-export * from './constants'
-export * from './types'
+export {
+  walk,
+} from './board'
+
+export {
+  type Color,
+  type Direction,
+  type Position,
+} from './types'
