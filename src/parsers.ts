@@ -39,20 +39,18 @@ export function parseBoard(source: string) {
 
       black = true
       board[position] = 'k'
-      continue
     }
 
-    if (piece === 'K') {
+    else if (piece === 'K') {
       if (white) {
         throw new Error('Parse board failed: multiple white kings')
       }
 
       white = true
       board[position] = 'K'
-      continue
     }
 
-    if (
+    else if (
       piece === 'p' ||
       piece === 'r' ||
       piece === 'n' ||
@@ -65,7 +63,9 @@ export function parseBoard(source: string) {
       piece === 'Q'
     ) {
       board[position] = piece
-    } else if (piece !== '_') {
+    }
+    
+    else if (piece !== '_') {
       throw new Error('Parse board failed: invalid piece')
     }
   }

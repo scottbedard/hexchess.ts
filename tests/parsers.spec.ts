@@ -209,4 +209,8 @@ describe('parseBoard', () => {
   test('error: multiple white kings', () => {
     expect(() => parseBoard('1/3/5/7/9/11/11/11/11/11/9KK')).toThrowError()
   })
+
+  test('error: invalid piece', () => {
+    expect(() => parseBoard('x/3/5/7/9/11/11/11/11/11/11')).toThrowError()
+  })
 })
