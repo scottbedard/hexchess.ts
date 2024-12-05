@@ -20,8 +20,11 @@ jobs:
           run_install: true
           version: 9
 
-      - name: Build
-        run: pnpm build
+      - name: ESLint
+        run: pnpm lint
 
       - name: Vitest
         run: pnpm test
+
+      - name: Build
+        run: pnpm build
