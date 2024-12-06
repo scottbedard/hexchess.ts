@@ -1,5 +1,6 @@
+import { getBishopMoves } from './pieces/bishop'
 import { getQueenMoves } from './pieces/queen'
-import { getColor, isPosition, parseBoard } from './board'
+import { isPosition, parseBoard } from './board'
 import type { Board, Move, Position } from './types'
 
 export class Hexchess {
@@ -61,6 +62,8 @@ export class Hexchess {
    */
   private movesUnsafe(position: Position): Move[] {
     switch (this.board[position]) {
+      case 'b': return getBishopMoves(this, position, 'b')
+      case 'B': return getBishopMoves(this, position, 'w')
       case 'q': return getQueenMoves(this, position, 'b')
       case 'Q': return getQueenMoves(this, position, 'w')
       default: return []

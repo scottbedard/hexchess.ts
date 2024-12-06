@@ -2,14 +2,14 @@ import { expect, test } from 'vitest'
 import { Hexchess } from '@/index'
 
 test('white queen', () => {
-  const hexchess = new Hexchess('1/3/5/7/9/5Q5/11/11/11/11/11')
+  const hexchess = new Hexchess('p/3/5/7/9/P4Q5/11/11/11/11/11')
 
   expect(hexchess.moves('f6')).toEqual([
     { from: 'f6', to: 'f7' },
     { from: 'f6', to: 'f8' },
     { from: 'f6', to: 'f9' },
     { from: 'f6', to: 'f10' },
-    { from: 'f6', to: 'f11' },
+    { from: 'f6', to: 'f11' }, // f11 is hostile
     { from: 'f6', to: 'g7' },
     { from: 'f6', to: 'h8' },
     { from: 'f6', to: 'g6' },
@@ -44,21 +44,21 @@ test('white queen', () => {
     { from: 'f6', to: 'd6' },
     { from: 'f6', to: 'c6' },
     { from: 'f6', to: 'b6' },
-    { from: 'f6', to: 'a6' },
+    // a6 is friendly
     { from: 'f6', to: 'e7' },
     { from: 'f6', to: 'd8' },
   ])
 })
 
 test('black queen', () => {
-  const hexchess = new Hexchess('1/3/5/7/9/5q5/11/11/11/11/11')
+  const hexchess = new Hexchess('P/3/5/7/9/p4q5/11/11/11/11/11')
 
   expect(hexchess.moves('f6')).toEqual([
     { from: 'f6', to: 'f7' },
     { from: 'f6', to: 'f8' },
     { from: 'f6', to: 'f9' },
     { from: 'f6', to: 'f10' },
-    { from: 'f6', to: 'f11' },
+    { from: 'f6', to: 'f11' }, // f11 is hostile
     { from: 'f6', to: 'g7' },
     { from: 'f6', to: 'h8' },
     { from: 'f6', to: 'g6' },
@@ -93,7 +93,7 @@ test('black queen', () => {
     { from: 'f6', to: 'd6' },
     { from: 'f6', to: 'c6' },
     { from: 'f6', to: 'b6' },
-    { from: 'f6', to: 'a6' },
+    // a6 is friendly
     { from: 'f6', to: 'e7' },
     { from: 'f6', to: 'd8' },
   ])
