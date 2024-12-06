@@ -1,6 +1,6 @@
 export {
-  walk
-} from './board'
+  Hexchess
+} from './hexchess'
 
 export {
   type Color,

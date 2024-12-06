@@ -98,11 +98,11 @@ export const positions = [
 ] as const
 
 /**
- * This array describes the relationship of positions relative to one another.
- * Think of these like the hands of a clock, with the selected position at the center.
+ * This describes the relationship of positions relative to one another.
+ * Think of it like the hands of a clock, with the selected position at the center.
  * The first sibling is at 12 o'clock, the second is at 1 o'clock, and so on.
  */
-export const board: Record<
+export const graph: Record<
   typeof positions[number],
   Vec<12, typeof positions[number] | undefined>
 > = {

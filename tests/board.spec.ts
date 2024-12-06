@@ -1,9 +1,232 @@
 import { describe, expect, test } from 'vitest'
-import { walk } from '@/board'
+import { isPosition, parseBoard, walk } from '@/board'
+import { positions } from '@/constants'
 import type { Direction, Position } from '@/types'
 
-// use the perimeter to walk across every position in every direction
+test('isPosition', () => {
+  for (let i = 0; i < positions.length; i++) {
+    expect(isPosition(positions[i])).toBe(true)
+  }
+
+  expect(isPosition('x')).toBe(false)
+})
+
+describe('parseBoard', () => {
+  test('empty', () => {
+    const board = parseBoard('1/3/5/7/9/11/11/11/11/11/11')
+
+    expect(board).toEqual({
+      f11: null,
+      e10: null,
+      f10: null,
+      g10: null,
+      d9: null,
+      e9: null,
+      f9: null,
+      g9: null,
+      h9: null,
+      c8: null,
+      d8: null,
+      e8: null,
+      f8: null,
+      g8: null,
+      h8: null,
+      i8: null,
+      b7: null,
+      c7: null,
+      d7: null,
+      e7: null,
+      f7: null,
+      g7: null,
+      h7: null,
+      i7: null,
+      k7: null,
+      a6: null,
+      b6: null,
+      c6: null,
+      d6: null,
+      e6: null,
+      f6: null,
+      g6: null,
+      h6: null,
+      i6: null,
+      k6: null,
+      l6: null,
+      a5: null,
+      b5: null,
+      c5: null,
+      d5: null,
+      e5: null,
+      f5: null,
+      g5: null,
+      h5: null,
+      i5: null,
+      k5: null,
+      l5: null,
+      a4: null,
+      b4: null,
+      c4: null,
+      d4: null,
+      e4: null,
+      f4: null,
+      g4: null,
+      h4: null,
+      i4: null,
+      k4: null,
+      l4: null,
+      a3: null,
+      b3: null,
+      c3: null,
+      d3: null,
+      e3: null,
+      f3: null,
+      g3: null,
+      h3: null,
+      i3: null,
+      k3: null,
+      l3: null,
+      a2: null,
+      b2: null,
+      c2: null,
+      d2: null,
+      e2: null,
+      f2: null,
+      g2: null,
+      h2: null,
+      i2: null,
+      k2: null,
+      l2: null,
+      a1: null,
+      b1: null,
+      c1: null,
+      d1: null,
+      e1: null,
+      f1: null,
+      g1: null,
+      h1: null,
+      i1: null,
+      k1: null,
+      l1: null,
+    })
+  })
+
+  test('initial', () => {
+    const board = parseBoard('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1')
+
+    expect(board).toEqual({
+      f11: 'b',
+      e10: 'q',
+      f10: 'b',
+      g10: 'k',
+      d9: 'n',
+      e9: null,
+      f9: 'b',
+      g9: null,
+      h9: 'n',
+      c8: 'r',
+      d8: null,
+      e8: null,
+      f8: null,
+      g8: null,
+      h8: null,
+      i8: 'r',
+      b7: 'p',
+      c7: 'p',
+      d7: 'p',
+      e7: 'p',
+      f7: 'p',
+      g7: 'p',
+      h7: 'p',
+      i7: 'p',
+      k7: 'p',
+      a6: null,
+      b6: null,
+      c6: null,
+      d6: null,
+      e6: null,
+      f6: null,
+      g6: null,
+      h6: null,
+      i6: null,
+      k6: null,
+      l6: null,
+      a5: null,
+      b5: null,
+      c5: null,
+      d5: null,
+      e5: null,
+      f5: 'P',
+      g5: null,
+      h5: null,
+      i5: null,
+      k5: null,
+      l5: null,
+      a4: null,
+      b4: null,
+      c4: null,
+      d4: null,
+      e4: 'P',
+      f4: null,
+      g4: 'P',
+      h4: null,
+      i4: null,
+      k4: null,
+      l4: null,
+      a3: null,
+      b3: null,
+      c3: null,
+      d3: 'P',
+      e3: null,
+      f3: 'B',
+      g3: null,
+      h3: 'P',
+      i3: null,
+      k3: null,
+      l3: null,
+      a2: null,
+      b2: null,
+      c2: 'P',
+      d2: null,
+      e2: null,
+      f2: 'B',
+      g2: null,
+      h2: null,
+      i2: 'P',
+      k2: null,
+      l2: null,
+      a1: null,
+      b1: 'P',
+      c1: 'R',
+      d1: 'N',
+      e1: 'Q',
+      f1: 'B',
+      g1: 'K',
+      h1: 'N',
+      i1: 'R',
+      k1: 'P',
+      l1: null,
+    })
+  })
+
+  test('error: invalid length', () => {
+    expect(() => parseBoard('1/3/5/7/9/11/11/11/11/11/11_')).toThrowError()
+  })
+
+  test('error: multiple black kings', () => {
+    expect(() => parseBoard('1/3/5/7/9/11/11/11/11/11/9kk')).toThrowError()
+  })
+
+  test('error: multiple white kings', () => {
+    expect(() => parseBoard('1/3/5/7/9/11/11/11/11/11/9KK')).toThrowError()
+  })
+
+  test('error: invalid piece', () => {
+    expect(() => parseBoard('x/3/5/7/9/11/11/11/11/11/11')).toThrowError()
+  })
+})
+
 describe('walk', () => {
+  // use the perimeter to walk across every position in every direction
   const tests: {
     from: Position,
     direction: Direction,
