@@ -1,5 +1,5 @@
 import { graph, positions } from '@/constants'
-import type { Board, Direction, Position } from '@/types'
+import type { Board, Color, Direction, Piece, Position } from '@/types'
 
 /**
  * Create board object
@@ -101,6 +101,15 @@ export function createBoard(): Board {
 }
 
 /**
+ * Get the color of a piece
+ */
+export function getColor(piece: Piece): Color {
+  return piece === 'k' || piece === 'q' || piece === 'r' || piece === 'b' || piece === 'n' || piece === 'p'
+    ? 'b'
+    : 'w'
+}
+
+/**
  * Check if a string is a valid position
  */
 export function isPosition(source: string): source is Position {
@@ -176,13 +185,32 @@ export function parseBoard(source: string) {
 /**
  * Traverse the board in a given direction
  */
-export function walk(from: Position, direction: Direction) {
+export function walk(
+  from: Position,
+  direction: Direction,
+  board: Board = createBoard(),
+) {
   const path = []
+
+  const color = board[from] && getColor(board[from])
 
   let next = graph[from][direction]
 
   while (next) {
+    if (color) {
+      const nextPiece = board[next]
+
+      if (nextPiece) {
+        if (getColor(nextPiece) !== color) {
+          path.push(next)
+        }
+
+        break
+      }
+    }
+
     path.push(next)
+
     next = graph[next][direction]
   }
 

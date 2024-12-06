@@ -98,7 +98,7 @@ export const positions = [
 ] as const
 
 /**
- * This describes the relationship of positions relative to one another.
+ * This object describes the relationship of positions relative to one another.
  * Think of it like the hands of a clock, with the selected position at the center.
  * The first sibling is at 12 o'clock, the second is at 1 o'clock, and so on.
  */
