@@ -188,16 +188,15 @@ export function parseBoard(source: string) {
 export function walk(
   from: Position,
   direction: Direction,
-  board: Board = createBoard()
+  board?: Board,
+  color?: Color
 ): Position[] {
   const path: Position[] = []
-
-  const color = board[from] && getColor(board[from])
 
   let next = graph[from][direction]
 
   while (next) {
-    if (color) {
+    if (board && color) {
       const nextPiece = board[next]
 
       if (nextPiece) {

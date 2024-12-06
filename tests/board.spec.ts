@@ -630,13 +630,13 @@ describe('walk', () => {
   })
 
   test('stop short of friendly piece', () => {
-    const path = walk('f6', 0, parseBoard('K/3/5/7/9/5Q5/11/11/11/11/11')) // f6 is white queen
+    const path = walk('f6', 0, parseBoard('K/3/5/7/9/11/11/11/11/11/11'), 'w')
 
-    expect(path).toEqual(['f7', 'f8', 'f9', 'f10']) // <- f11 is the white king
+    expect(path).toEqual(['f7', 'f8', 'f9', 'f10']) // <- f11 is white king
   })
 
   test('capture enemy piece', () => {
-    const path = walk('f6', 0, parseBoard('K/3/5/7/9/5q5/11/11/11/11/11')) // f6 is white queen
+    const path = walk('f6', 0, parseBoard('K/3/5/7/9/11/11/11/11/11/11'), 'b')
 
     expect(path).toEqual(['f7', 'f8', 'f9', 'f10', 'f11']) // <- f11 is the white king
   })

@@ -1,5 +1,6 @@
-import { isPosition, parseBoard } from './board'
-import type { Board, Position } from './types'
+import { getQueenMoves } from './pieces/queen'
+import { getColor, isPosition, parseBoard } from './board'
+import type { Board, Move, Position } from './types'
 
 export class Hexchess {
   board: Board
@@ -12,6 +13,9 @@ export class Hexchess {
 
   fullmove: number
 
+  /**
+   * Create new hexchess object from FEN string
+   */
   constructor(fen: string = '1/3/5/7/9/11/11/11/11/11/11 w - 0 1') {
     const [
       board = '1/3/5/7/9/11/11/11/11/11/11',
@@ -43,5 +47,23 @@ export class Hexchess {
     this.halfmove = Math.max(0, parseInt(halfmove, 10))
 
     this.fullmove = Math.max(1, parseInt(fullmove, 10))
+  }
+
+  /**
+   * Get all legal moves from a position
+   */
+  moves(position: Position) {
+    return this.movesUnsafe(position)
+  }
+
+  /**
+   * Get all moves from a position, including ones that cause self-check
+   */
+  private movesUnsafe(position: Position): Move[] {
+    switch (this.board[position]) {
+      case 'q': return getQueenMoves(this, position, 'b')
+      case 'Q': return getQueenMoves(this, position, 'w')
+      default: return []
+    }
   }
 }
