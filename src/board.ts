@@ -188,9 +188,9 @@ export function parseBoard(source: string) {
 export function walk(
   from: Position,
   direction: Direction,
-  board: Board = createBoard(),
-) {
-  const path = []
+  board: Board = createBoard()
+): Position[] {
+  const path: Position[] = []
 
   const color = board[from] && getColor(board[from])
 
