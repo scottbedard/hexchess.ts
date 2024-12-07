@@ -91,6 +91,12 @@ describe('standard capture', () => {
     ])
   })
 
+  test('black (blocked friendly)', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/5p5/4p1p4/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f5' }])
+  })
+
   test('white', () => {
     const hexchess = new Hexchess('1/3/5/7/9/4pPp4/11/11/11/11/11 w - 0 1')
     const moves = hexchess.moves('f6')
@@ -106,12 +112,6 @@ describe('standard capture', () => {
     const hexchess = new Hexchess('1/3/5/7/9/4PPP4/11/11/11/11/11 w - 0 1')
 
     expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f7' }])
-  })
-
-  test('black (blocked friendly)', () => {
-    const hexchess = new Hexchess('1/3/5/7/9/5p5/4p1p4/11/11/11/11 w - 0 1')
-
-    expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f5' }])
   })
 })
 
@@ -149,6 +149,74 @@ describe('en passant', () => {
     expect(hexchess.moves('g6')).toEqual([
       { from: 'g6', to: 'g5' },
       // f6 is out of turn
+    ])
+  })
+})
+
+describe('promotion', () => {
+  test('black', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/11 w - 0 1')
+
+    expect(hexchess.moves('f2')).toEqual([
+      { from: 'f2', to: 'f1', promotion: 'q' },
+      { from: 'f2', to: 'f1', promotion: 'r' },
+      { from: 'f2', to: 'f1', promotion: 'b' },
+      { from: 'f2', to: 'f1', promotion: 'n' },
+    ])
+  })
+
+  test('black (capture portside)', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/4rrK4 w - 0 1')
+
+    expect(hexchess.moves('f2')).toEqual([
+      { from: 'f2', to: 'g1', promotion: 'q' },
+      { from: 'f2', to: 'g1', promotion: 'r' },
+      { from: 'f2', to: 'g1', promotion: 'b' },
+      { from: 'f2', to: 'g1', promotion: 'n' },
+    ])
+  })
+
+  test('black (capture starboard)', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/4Krr4 w - 0 1')
+
+    expect(hexchess.moves('f2')).toEqual([
+      { from: 'f2', to: 'e1', promotion: 'q' },
+      { from: 'f2', to: 'e1', promotion: 'r' },
+      { from: 'f2', to: 'e1', promotion: 'b' },
+      { from: 'f2', to: 'e1', promotion: 'n' },
+    ])
+  })
+
+  test('white', () => {
+    const hexchess = new Hexchess('1/1P1/5/7/9/11/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f10')).toEqual([
+      { from: 'f10', to: 'f11', promotion: 'Q' },
+      { from: 'f10', to: 'f11', promotion: 'R' },
+      { from: 'f10', to: 'f11', promotion: 'B' },
+      { from: 'f10', to: 'f11', promotion: 'N' },
+    ])
+  })
+
+  test('white (capture portside)', () => {
+    const hexchess = new Hexchess('R/kPR/5/7/9/11/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f10')).toEqual([
+      { from: 'f10', to: 'e10', promotion: 'Q' },
+      { from: 'f10', to: 'e10', promotion: 'R' },
+      { from: 'f10', to: 'e10', promotion: 'B' },
+      { from: 'f10', to: 'e10', promotion: 'N' },
+    ])
+  })
+
+  test('white (capture starboard)', () => {
+    const hexchess = new Hexchess('R/RPk/5/7/9/11/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f10')).toEqual([
+      { from: 'f10', to: 'g10', promotion: 'Q' },
+      { from: 'f10', to: 'g10', promotion: 'R' },
+      { from: 'f10', to: 'g10', promotion: 'B' },
+      { from: 'f10', to: 'g10', promotion: 'N' },
     ])
   })
 })
