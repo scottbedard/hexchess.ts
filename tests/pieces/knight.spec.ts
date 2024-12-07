@@ -1,5 +1,5 @@
 import { Hexchess } from '@/index'
-import { describe, expect, test } from 'vitest'
+import { expect, test } from 'vitest'
 
 test('knight', () => {
   const hexchess = new Hexchess('P/3/5/7/9/5n5/11/11/11/11/11')

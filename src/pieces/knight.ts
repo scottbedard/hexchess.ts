@@ -1,13 +1,13 @@
 import { graph } from '@/constants'
 import { Hexchess } from '@/hexchess'
-import { getColor, walk } from '@/board'
+import { getColor } from '@/board'
 import type { Color, Direction, Move, Position, Vec } from '@/types'
 
 export function getKnightMoves(hexchess: Hexchess, from: Position, color: Color): Move[] {
   const moves: Move[] = []
 
   // diagonal direction, first orthogonal direction, second orthogonal direction
-  let targets: Vec<6, Vec<3, Direction>> = [
+  const targets: Vec<6, Vec<3, Direction>> = [
     [1, 0, 2],
     [3, 2, 4],
     [5, 4, 6],
@@ -24,7 +24,7 @@ export function getKnightMoves(hexchess: Hexchess, from: Position, color: Color)
     }
 
     const first = graph[intermediate][orthogonal1]
-    
+
     if (first) {
       const piece = hexchess.board[first]
 
