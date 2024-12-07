@@ -104,7 +104,7 @@ describe('standard capture', () => {
 
   test('white (blocked friendly', () => {
     const hexchess = new Hexchess('1/3/5/7/9/4PPP4/11/11/11/11/11 w - 0 1')
-    
+
     expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f7' }])
   })
 
@@ -112,5 +112,43 @@ describe('standard capture', () => {
     const hexchess = new Hexchess('1/3/5/7/9/5p5/4p1p4/11/11/11/11 w - 0 1')
 
     expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f5' }])
+  })
+})
+
+describe('en passant', () => {
+  test('black (portside)', () => {
+    const hexchess = new Hexchess('1/3/5/7/4P4/4p6/11/11/11/11/11 b f6 0 1')
+
+    expect(hexchess.moves('e6')).toEqual([
+      { from: 'e6', to: 'e5' },
+      { from: 'e6', to: 'f6' }, // en passant
+    ])
+  })
+
+  test('black (portside out of turn)', () => {
+    const hexchess = new Hexchess('1/3/5/7/4P4/4p6/11/11/11/11/11 w f6 0 1')
+
+    expect(hexchess.moves('e6')).toEqual([
+      { from: 'e6', to: 'e5' },
+      // f6 is out of turn
+    ])
+  })
+
+  test('black (starboard)', () => {
+    const hexchess = new Hexchess('1/3/5/7/4P4/6p4/11/11/11/11/11 b f6 0 1')
+
+    expect(hexchess.moves('g6')).toEqual([
+      { from: 'g6', to: 'g5' },
+      { from: 'g6', to: 'f6' }, // en passant
+    ])
+  })
+
+  test('black (starboard out of turn)', () => {
+    const hexchess = new Hexchess('1/3/5/7/4P4/6p4/11/11/11/11/11 w f6 0 1')
+
+    expect(hexchess.moves('g6')).toEqual([
+      { from: 'g6', to: 'g5' },
+      // f6 is out of turn
+    ])
   })
 })
