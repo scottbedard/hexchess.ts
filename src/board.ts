@@ -182,7 +182,10 @@ export function parseBoard(source: string) {
   return board
 }
 
-function step(
+/**
+ * Step along the board in a given direction, capturing enemy pieces
+ */
+export function step(
   from: Position,
   direction: Direction,
   board: Board,

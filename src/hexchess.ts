@@ -1,5 +1,6 @@
 import { createBoard } from './board'
 import { getBishopMoves } from './pieces/bishop'
+import { getKingMoves } from './pieces/king'
 import { getKnightMoves } from './pieces/knight'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
@@ -67,6 +68,8 @@ export class Hexchess {
     switch (this.board[position]) {
       case 'b': return getBishopMoves(this, position, 'b')
       case 'B': return getBishopMoves(this, position, 'w')
+      case 'k': return getKingMoves(this, position, 'b')
+      case 'K': return getKingMoves(this, position, 'w')
       case 'n': return getKnightMoves(this, position, 'b')
       case 'N': return getKnightMoves(this, position, 'w')
       case 'q': return getQueenMoves(this, position, 'b')
