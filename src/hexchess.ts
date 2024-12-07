@@ -1,19 +1,21 @@
+import { createBoard } from './board'
 import { getBishopMoves } from './pieces/bishop'
+import { getKnightMoves } from './pieces/knight'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
 import { isPosition, parseBoard } from './board'
 import type { Board, Move, Position } from './types'
 
 export class Hexchess {
-  board: Board
+  board: Board = createBoard()
 
-  enPassant: Position | null
+  enPassant: Position | null = null
 
-  turn: 'w' | 'b'
+  turn: 'w' | 'b' = 'w'
 
-  halfmove: number
+  halfmove: number = 0
 
-  fullmove: number
+  fullmove: number = 1
 
   /**
    * Create new hexchess object from FEN string
@@ -65,6 +67,8 @@ export class Hexchess {
     switch (this.board[position]) {
       case 'b': return getBishopMoves(this, position, 'b')
       case 'B': return getBishopMoves(this, position, 'w')
+      case 'n': return getKnightMoves(this, position, 'b')
+      case 'N': return getKnightMoves(this, position, 'w')
       case 'q': return getQueenMoves(this, position, 'b')
       case 'Q': return getQueenMoves(this, position, 'w')
       case 'r': return getRookMoves(this, position, 'b')
