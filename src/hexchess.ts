@@ -1,5 +1,6 @@
 import { getBishopMoves } from './pieces/bishop'
 import { getQueenMoves } from './pieces/queen'
+import { getRookMoves } from './pieces/rook'
 import { isPosition, parseBoard } from './board'
 import type { Board, Move, Position } from './types'
 
@@ -66,6 +67,8 @@ export class Hexchess {
       case 'B': return getBishopMoves(this, position, 'w')
       case 'q': return getQueenMoves(this, position, 'b')
       case 'Q': return getQueenMoves(this, position, 'w')
+      case 'r': return getRookMoves(this, position, 'b')
+      case 'R': return getRookMoves(this, position, 'w')
       default: return []
     }
   }
