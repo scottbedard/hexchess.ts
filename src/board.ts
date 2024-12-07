@@ -208,7 +208,7 @@ export function step(
 export function walk(
   from: Position,
   direction: Direction,
-  board: Board = createBoard(),
+  board: Board,
   color: Color
 ): Position[] {
   const path: Position[] = []

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { isPosition, parseBoard, walk } from '@/board'
+import { createBoard, isPosition, parseBoard, walk } from '@/board'
 import { positions } from '@/constants'
 import type { Direction, Position } from '@/types'
 
@@ -623,9 +623,11 @@ describe('walk', () => {
     { from: 'b1', direction: 11, expected: ['a2'] },
   ]
 
+  const board = createBoard()
+
   tests.forEach(t => {
     test(`${t.from} : ${t.direction} = ${t.expected.join(' → ')}`, () => {
-      expect(walk(t.from, t.direction), `Board path ${t.from}:${t.direction} failed`).toEqual(t.expected)
+      expect(walk(t.from, t.direction, board, 'w'), `Board path ${t.from}:${t.direction} failed`).toEqual(t.expected)
     })
   })
 
