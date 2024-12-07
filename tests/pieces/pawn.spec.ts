@@ -79,24 +79,38 @@ describe('advance', () => {
   })
 })
 
-test('standard black capture', () => {
-  const hexchess = new Hexchess('1/3/5/7/9/5p5/4P1P4/11/11/11/11 w - 0 1')
-  const moves = hexchess.moves('f6')
+describe('standard capture', () => {
+  test('black', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/5p5/4P1P4/11/11/11/11 w - 0 1')
+    const moves = hexchess.moves('f6')
 
-  expect(moves).toEqual([
-    { from: 'f6', to: 'f5' },
-    { from: 'f6', to: 'g5' },
-    { from: 'f6', to: 'e5' },
-  ])
-})
+    expect(moves).toEqual([
+      { from: 'f6', to: 'f5' },
+      { from: 'f6', to: 'g5' },
+      { from: 'f6', to: 'e5' },
+    ])
+  })
 
-test('standard white capture', () => {
-  const hexchess = new Hexchess('1/3/5/7/9/4pPp4/11/11/11/11/11 w - 0 1')
-  const moves = hexchess.moves('f6')
+  test('white', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/4pPp4/11/11/11/11/11 w - 0 1')
+    const moves = hexchess.moves('f6')
 
-  expect(moves).toEqual([
-    { from: 'f6', to: 'f7' },
-    { from: 'f6', to: 'e6' },
-    { from: 'f6', to: 'g6' },
-  ])
+    expect(moves).toEqual([
+      { from: 'f6', to: 'f7' },
+      { from: 'f6', to: 'e6' },
+      { from: 'f6', to: 'g6' },
+    ])
+  })
+
+  test('white (blocked friendly', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/4PPP4/11/11/11/11/11 w - 0 1')
+    
+    expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f7' }])
+  })
+
+  test('black (blocked friendly)', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/5p5/4p1p4/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f5' }])
+  })
 })
