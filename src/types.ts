@@ -1,7 +1,5 @@
 import type { positions } from '@/constants'
 
-declare const tag: unique symbol
-
 export type Board = Record<Position, Piece | null>
 
 export type Color = 'b' | 'w'
@@ -13,8 +11,6 @@ export type Move = {
   to: Position
   promotion?: PromotionPiece
 }
-
-export type Opaque<T, Token> = T & { [tag]: [T, Token] }
 
 export type Piece = 'p' | 'r' | 'n' | 'b' | 'q' | 'k' | 'P' | 'R' | 'N' | 'B' | 'Q' | 'K'
 
