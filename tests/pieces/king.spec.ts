@@ -17,7 +17,7 @@ test('king', () => {
     { from: 'f6', to: 'e5' },
     { from: 'f6', to: 'd5' },
     { from: 'f6', to: 'e6' },
-    { from: 'f6', to: 'e7' }
+    { from: 'f6', to: 'e7' },
   ])
 })
 
