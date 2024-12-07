@@ -3,6 +3,11 @@ import { getColor } from '@/board'
 import { graph } from '@/constants'
 import type { Color, Move, Position, Vec } from '@/types'
 
+const startingPositions: Record<Color, Vec<9, Position>> = {
+  b: ['b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7', 'i7', 'k7'],
+  w: ['b1', 'c2', 'd3', 'e4', 'f5', 'g4', 'h3', 'i2', 'k1'],
+} as const
+
 export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): Move[] {
   const moves: Move[] = []
 
@@ -21,7 +26,7 @@ export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): 
     moves.push({ from, to: forward })
 
     // advance forward another position if possible
-    if (isStartingPosition(from, color)) {
+    if (startingPositions[color].includes(from)) {
       const forward2 = graph[forward][advanceDirection]
 
       if (forward2 && !hexchess.board[forward2]) {
@@ -59,13 +64,4 @@ export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): 
   }
 
   return moves
-}
-
-function isStartingPosition(position: Position, color: Color) {
-  const obj: Record<Color, Vec<9, Position>> = {
-    b: ['b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7', 'i7', 'k7'],
-    w: ['b1', 'c2', 'd3', 'e4', 'f5', 'g4', 'h3', 'i2', 'k1'],
-  }
-
-  return obj[color].includes(position)
 }
