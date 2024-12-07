@@ -2,10 +2,11 @@ import { createBoard } from './board'
 import { getBishopMoves } from './pieces/bishop'
 import { getKingMoves } from './pieces/king'
 import { getKnightMoves } from './pieces/knight'
+import { getPawnMoves } from './pieces/pawn'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
 import { isPosition, parseBoard } from './board'
-import type { Board, Move, Position } from './types'
+import type { Board, Move, Piece, Position } from './types'
 
 export class Hexchess {
   board: Board = createBoard()
@@ -65,18 +66,25 @@ export class Hexchess {
    * Get all moves from a position, including ones that cause self-check
    */
   private movesUnsafe(position: Position): Move[] {
-    switch (this.board[position]) {
-      case 'b': return getBishopMoves(this, position, 'b')
-      case 'B': return getBishopMoves(this, position, 'w')
-      case 'k': return getKingMoves(this, position, 'b')
-      case 'K': return getKingMoves(this, position, 'w')
-      case 'n': return getKnightMoves(this, position, 'b')
-      case 'N': return getKnightMoves(this, position, 'w')
-      case 'q': return getQueenMoves(this, position, 'b')
-      case 'Q': return getQueenMoves(this, position, 'w')
-      case 'r': return getRookMoves(this, position, 'b')
-      case 'R': return getRookMoves(this, position, 'w')
-      default: return []
+    const piece = this.board[position]
+
+    if (!piece) {
+      return []
     }
+
+    return {
+      b: getBishopMoves(this, position, 'b'),
+      B: getBishopMoves(this, position, 'w'),
+      k: getKingMoves(this, position, 'b'),
+      K: getKingMoves(this, position, 'w'),
+      n: getKnightMoves(this, position, 'b'),
+      N: getKnightMoves(this, position, 'w'),
+      p: getPawnMoves(this, position, 'b'),
+      P: getPawnMoves(this, position, 'w'),
+      q: getQueenMoves(this, position, 'b'),
+      Q: getQueenMoves(this, position, 'w'),
+      r: getRookMoves(this, position, 'b'),
+      R: getRookMoves(this, position, 'w'),
+    }[piece]
   }
 }
