@@ -6,6 +6,7 @@ import { getPawnMoves } from './pieces/pawn'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
 import { isPosition, parseBoard } from './board'
+import { positions } from './constants'
 import type { Board, Move, Position } from './types'
 
 export class Hexchess {
@@ -53,6 +54,21 @@ export class Hexchess {
     this.halfmove = Math.max(0, parseInt(halfmove, 10))
 
     this.fullmove = Math.max(1, parseInt(fullmove, 10))
+  }
+
+  /**
+   * Find a player's king
+   */
+  findKing(color: 'w' | 'b'): Position | null {
+    const char = color === 'w' ? 'K' : 'k'
+
+    for (let i = 0; i < positions.length; i++) {
+      if (this.board[positions[i]] === char) {
+        return positions[i]
+      }
+    }
+
+    return null
   }
 
   /**
