@@ -182,35 +182,40 @@ export function parseBoard(source: string) {
   return board
 }
 
+function step(
+  from: Position,
+  direction: Direction,
+  board: Board,
+  color: Color
+): Position | undefined {
+  const position = graph[from][direction]
+
+  if (position) {
+    const piece = board[position]
+
+    if (!piece || getColor(piece) !== color) {
+      return position
+    }
+  }
+}
+
 /**
  * Traverse the board in a given direction
  */
 export function walk(
   from: Position,
   direction: Direction,
-  board?: Board,
-  color?: Color
+  board: Board = createBoard(),
+  color: Color
 ): Position[] {
   const path: Position[] = []
 
-  let next = graph[from][direction]
+  let next: Position | undefined = step(from, direction, board, color)
 
-  while (next) {
-    if (board && color) {
-      const nextPiece = board[next]
-
-      if (nextPiece) {
-        if (getColor(nextPiece) !== color) {
-          path.push(next)
-        }
-
-        break
-      }
-    }
-
+  while(next) {
     path.push(next)
 
-    next = graph[next][direction]
+    next = step(next, direction, board, color)
   }
 
   return path
