@@ -6,7 +6,7 @@ import { getPawnMoves } from './pieces/pawn'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
 import { isPosition, parseBoard } from './board'
-import type { Board, Move, Piece, Position } from './types'
+import type { Board, Move, Position } from './types'
 
 export class Hexchess {
   board: Board = createBoard()
