@@ -374,6 +374,43 @@ describe('findKing', () => {
   })
 })
 
+describe('isThreatened', () => {
+  test('unattacked position is not threatened', () => {
+    const hexchess = new Hexchess()
+    hexchess.board.g10 = 'K'
+
+    expect(hexchess.isThreatened('g10')).toBe(false)
+  })
+    
+  test('threatened by enemy piece', () => {
+    const hexchess = new Hexchess()
+    hexchess.board.g10 = 'K'
+    hexchess.board.g1 = 'r'
+
+    expect(hexchess.isThreatened('g10')).toBe(true)
+  })
+
+  test('not threatened by friendly piece', () => {
+    const hexchess = new Hexchess()
+    hexchess.board.f6 = 'Q'
+    hexchess.board.f7 = 'K'
+
+    expect(hexchess.isThreatened('f7')).toBe(false)
+  })
+
+  test('position is threatened while attacking or defending', () => {
+    const hexchess = new Hexchess()
+    hexchess.board.f6 = 'K'
+    hexchess.board.f7 = 'q'
+
+    hexchess.turn = 'b'
+    expect(hexchess.isThreatened('f6')).toBe(true)
+
+    hexchess.turn = 'w'
+    expect(hexchess.isThreatened('f6')).toBe(true)
+  })
+})
+
 describe('toString', () => {
   test('empty', () => {
     const hexchess = new Hexchess()
