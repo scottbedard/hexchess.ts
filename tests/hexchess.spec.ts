@@ -419,6 +419,32 @@ describe('findKing', () => {
   })
 })
 
+describe('isCheck', () => {
+  test('no king', () => {
+    const hexchess = new Hexchess()
+
+    expect(hexchess.isCheck()).toBe(false)
+  })
+
+  test('in check', () => {
+    const hexchess = new Hexchess('K/3/5/7/9/5r5/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.isCheck()).toBe(true)
+  })
+})
+
+describe('isCheckmate', () => {
+  test('checkmate', () => {
+    const hexchess = new Hexchess('K/3/5/3q3/2q6/11/11/11/11/11/11 b - 0 1')
+
+    expect(hexchess.isCheckmate()).toBe(false)
+    
+    hexchess.apply('d7f9')
+    
+    expect(hexchess.isCheckmate()).toBe(true)
+  })
+})
+
 describe('moves', () => {
   test('returns legal moves', () => {
     const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
@@ -428,7 +454,7 @@ describe('moves', () => {
       { from: 'f6', to: 'g5' },
       { from: 'f6', to: 'g4' },
       { from: 'f6', to: 'e4' },
-      { from: 'f6', to: 'e5' }
+      { from: 'f6', to: 'e5' },
     ])
   })
 })

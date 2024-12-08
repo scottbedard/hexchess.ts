@@ -220,9 +220,46 @@ export class Hexchess {
   }
 
   /**
+   * Test if king is in check
+   */
+  isCheck(): boolean {
+    const king = this.findKing(this.turn)
+
+    if (!king) {
+      return false
+    }
+
+    return this
+      .getColor(this.turn === 'w' ? 'b' : 'w')
+      .some(from => this.movesUnsafe(from).some(move => move.to === king))
+  }
+
+  isCheckmate(): boolean {
+    const king = this.findKing(this.turn)
+
+    if (!king || !this.isThreatened(king)) {
+      return false
+    }
+    
+    for (const position of positions) {
+      const piece = this.board[position]
+      
+      if (!piece || getColor(piece) !== this.turn) {
+        continue
+      }
+
+      if (this.moves(position).length > 0) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  /**
    * Test if a position is threatened
    */
-  isThreatened(position: Position) {
+  isThreatened(position: Position): boolean {
     const piece = this.board[position]
 
     if (!piece) {
@@ -237,7 +274,7 @@ export class Hexchess {
   /**
    * Get all legal moves from a position
    */
-  moves(position: Position) {
+  moves(position: Position): Move[] {
     const piece = this.board[position]
 
     if (!piece) {
@@ -262,7 +299,7 @@ export class Hexchess {
   /**
    * Get all moves from a position, including ones that result in self-check
    */
-  movesUnsafe(position: Position) {
+  movesUnsafe(position: Position): Move[] {
     const piece = this.board[position]
 
     if (!piece) {
