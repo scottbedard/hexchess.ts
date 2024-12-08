@@ -27,7 +27,7 @@ Instantiate a `Hexchess` class with an initial [FEN](https://en.wikipedia.org/wi
 ```ts
 import { Hexchess } from '@bedard/hexchess'
 
-const game = new Hexchess('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w - 0 1')
+const hexchess = new Hexchess()
 ```
 
 #### `apply`
@@ -35,11 +35,11 @@ const game = new Hexchess('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P
 Execute a whitespace-separated series of moves.
 
 ```ts
-const game = Hexchess.init()
+const hexchess = Hexchess.init()
 
-game.apply('g4g5 e7e6 f5f6 e6f6 g5f6')
+hexchess.apply('g4g5 e7e6 f5f6 e6f6 g5f6')
 
-game.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1'
+hexchess.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1'
 ```
 
 #### `applyUnsafe`
@@ -54,6 +54,26 @@ hexchess.applyUnsafe({ from: 'f5', to: 'f7' })
 // 'b/qbk/n1b1n/r5r/ppppPpppp/11/11/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b f6 0 1'
 ```
 
+#### `color`
+
+Get all positions occupied by a color.
+
+```ts
+const hexchess = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
+
+hexchess.getColors('b') // ['a4']
+```
+
+#### `currentMoves`
+
+Get all current legal moves.
+
+```ts
+const hexchess = new Hexchess('1/3/5/7/9/11/5P5/11/11/11/11 w - 0 1')
+
+hexchess.currentMoves() // [{ from: 'f5', to: 'f6' }, { from: 'f5', to: 'f7' }]
+```
+
 #### `findKing`
 
 Return a king's position.
@@ -64,14 +84,34 @@ const hexchess = Hexchess.init()
 hexchess.findKing('b') // g10
 ```
 
-#### `getColor`
+#### `isCheck`
 
-Get all positions occupied by a color.
+Test if the board is in check.
 
 ```ts
-const game = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
+const hexchess = new Hexchess('K/3/5/7/9/5r5/11/11/11/11/11 w - 0 1')
 
-game.getColors('b') // ['a4']
+hexchess.isCheck() // true
+```
+
+#### `isCheckmate`
+
+Test if the board is in checkmate.
+
+```ts
+const hexchess = new Hexchess('K/3/2q2/3q3/9/11/11/11/11/11/11 w - 1 2')
+
+hexchess.isCheckmate() // true
+```
+
+#### `isStalemate`
+
+Test if the board is in stalemate.
+
+```ts
+const hexchess = new Hexchess('k/1P1/2K2/7/9/11/11/11/11/11/11 b - 1 1')
+
+hexchess.isStalemate() // true
 ```
 
 #### `isThreatened`
@@ -79,9 +119,9 @@ game.getColors('b') // ['a4']
 Test if a position is threatened.
 
 ```ts
-const game = new Hexchess('K/3/5/7/9/5r5/11/11/11/11/11 w - 0 1')
+const hexchess = new Hexchess('K/3/5/7/9/5r5/11/11/11/11/11 w - 0 1')
 
-game.isThreatened('f11') // true
+hexchess.isThreatened('f11') // true
 ```
 
 #### `moves`
@@ -109,9 +149,9 @@ hexchess.movesUnsafe() // [{ from: 'f6', to: 'f7' }, { from: 'f6', to: 'g7' }, .
 Convert a `Hexchess` instance to a string.
 
 ```ts
-const game = Hexchess.init()
+const hexchess = Hexchess.init()
 
-game.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w - 0 1'
+hexchess.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w - 0 1'
 ```
 
 ## License
