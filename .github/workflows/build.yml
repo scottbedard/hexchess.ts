@@ -24,7 +24,12 @@ jobs:
         run: pnpm lint
 
       - name: Vitest
-        run: pnpm test
+        run: pnpm test:coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Build
         run: pnpm build
