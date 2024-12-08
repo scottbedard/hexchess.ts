@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext"],
@@ -8,9 +9,11 @@
     "moduleResolution": "node",
     "strict": true,
     "noImplicitAny": true,
+    "outDir": "dist",
     "paths": {
       "@/*": ["src/*"],
     },
+    "rootDir": "src",
     "strictNullChecks": true,
     "target": "es2016",
   },

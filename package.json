@@ -14,7 +14,7 @@
     "@stylistic/eslint-plugin": "^2.11.0",
     "eslint": "^9.16.0",
     "jiti": "^2.4.1",
-    "rollup": "^4.28.0",
+    "rollup": "^4.28.1",
     "rollup-plugin-esbuild-minify": "^1.1.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.17.0",
