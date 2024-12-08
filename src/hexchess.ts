@@ -75,32 +75,29 @@ export class Hexchess {
    * Get all legal moves from a position
    */
   moves(position: Position) {
-    return this.movesUnsafe(position)
-  }
+    const unsafe = (pos: Position) => {
+      const piece = this.board[pos]
 
-  /**
-   * Get all moves from a position, including ones that cause self-check
-   */
-  private movesUnsafe(position: Position): Move[] {
-    const piece = this.board[position]
+      if (!piece) {
+        return []
+      }
 
-    if (!piece) {
-      return []
+      return {
+        b: getBishopMoves(this, pos, 'b'),
+        B: getBishopMoves(this, pos, 'w'),
+        k: getKingMoves(this, pos, 'b'),
+        K: getKingMoves(this, pos, 'w'),
+        n: getKnightMoves(this, pos, 'b'),
+        N: getKnightMoves(this, pos, 'w'),
+        p: getPawnMoves(this, pos, 'b'),
+        P: getPawnMoves(this, pos, 'w'),
+        q: getQueenMoves(this, pos, 'b'),
+        Q: getQueenMoves(this, pos, 'w'),
+        r: getRookMoves(this, pos, 'b'),
+        R: getRookMoves(this, pos, 'w'),
+      }[piece]
     }
-
-    return {
-      b: getBishopMoves(this, position, 'b'),
-      B: getBishopMoves(this, position, 'w'),
-      k: getKingMoves(this, position, 'b'),
-      K: getKingMoves(this, position, 'w'),
-      n: getKnightMoves(this, position, 'b'),
-      N: getKnightMoves(this, position, 'w'),
-      p: getPawnMoves(this, position, 'b'),
-      P: getPawnMoves(this, position, 'w'),
-      q: getQueenMoves(this, position, 'b'),
-      Q: getQueenMoves(this, position, 'w'),
-      r: getRookMoves(this, position, 'b'),
-      R: getRookMoves(this, position, 'w'),
-    }[piece]
+    
+    return unsafe(position)
   }
 }
