@@ -140,12 +140,12 @@ describe('initialization', () => {
 })
 
 describe('apply', () => {
-  test.todo('single move', () => {
+  test('single move', () => {
     const hexchess = Hexchess.initial()
 
     hexchess.apply('g4g5')
 
-    // ...
+    expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1')
   })
 })
 

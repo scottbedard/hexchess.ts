@@ -7,13 +7,13 @@ import {
   parseMove,
   stringifyBoard
 } from './board'
-import { emptyPosition, graph, initialPosition, positions } from './constants'
 import { getBishopMoves } from './pieces/bishop'
 import { getKingMoves } from './pieces/king'
 import { getKnightMoves } from './pieces/knight'
 import { getPawnMoves } from './pieces/pawn'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
+import { graph, initialPosition, positions } from './constants'
 import type { Board, Move, Piece, Position } from './types'
 
 export class Hexchess {
@@ -30,7 +30,11 @@ export class Hexchess {
   /**
    * Create new hexchess object from FEN string
    */
-  constructor(fen: string = emptyPosition) {
+  constructor(fen?: string) {
+    if (!fen) {
+      return
+    }
+
     const [
       board,
       turn = 'w',
@@ -67,16 +71,52 @@ export class Hexchess {
    * Apply legal moves to the game
    */
   apply(source: string) {
-    source
-      .split(' ')
-      .forEach((notation, index) => {
-        const move = parseMove(notation.trim())
-        const piece = this.board[move.from]
+    const clone = this.clone()
 
-        if (!piece) {
-          throw new Error(`invalid move at position ${index}: ${notation}`)
-        }
-      })
+    const sequence = source
+      .split(' ')
+      .map(str => str.trim())
+      .filter(str => str)
+
+    for (let i = 0; i < sequence.length; i++) {
+      const move = parseMove(sequence[i])
+
+      const piece = clone.board[move.from]
+
+      if (!piece) {
+        throw new Error(`invalid move at index ${i}: ${sequence[i]}`)
+      }
+
+      if (getColor(piece) !== clone.turn) {
+        throw new Error(`invalid move at index ${i}: out of turn}`)
+      }
+
+      clone.applyUnsafe(move)
+    }
+
+    this.turn = clone.turn
+    this.enPassant = clone.enPassant
+    this.halfmove = clone.halfmove
+    this.fullmove = clone.fullmove
+
+    for (const position of positions) {
+      this.board[position] = clone.board[position]
+    }
+  }
+
+  /**
+   * Clone hexchess instance
+   */
+  clone() {
+    const hexchess = new Hexchess()
+
+    hexchess.board = { ...this.board }
+    hexchess.enPassant = this.enPassant
+    hexchess.turn = this.turn
+    hexchess.halfmove = this.halfmove
+    hexchess.fullmove = this.fullmove
+
+    return hexchess
   }
 
   /**

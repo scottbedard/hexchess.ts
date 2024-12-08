@@ -1,5 +1,5 @@
-import { graph, positions, promotionPositions } from '@/constants'
-import type { Board, Color, Direction, Move, Piece, Position } from '@/types'
+import { graph, positions, promotionPositions } from './constants'
+import type { Board, Color, Direction, Move, Piece, Position } from './types'
 
 /**
  * Create board object
