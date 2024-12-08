@@ -7,7 +7,7 @@ import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
 import { isPosition, parseBoard } from './board'
 import { positions } from './constants'
-import type { Board, Move, Position } from './types'
+import type { Board, Position } from './types'
 
 export class Hexchess {
   board: Board = createBoard()
@@ -97,7 +97,7 @@ export class Hexchess {
         R: getRookMoves(this, pos, 'w'),
       }[piece]
     }
-    
+
     return unsafe(position)
   }
 }

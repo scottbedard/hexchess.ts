@@ -11,10 +11,10 @@ describe('initialization', () => {
     expect(hexchess.halfmove).toBe(0)
     expect(hexchess.fullmove).toBe(1)
   })
-  
+
   test('board only', () => {
     const hexchess = new Hexchess('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1')
-  
+
     expect(hexchess.board).toEqual({
       f11: 'b',
       e10: 'q',
@@ -108,32 +108,32 @@ describe('initialization', () => {
       k1: 'P',
       l1: null,
     })
-  
+
     expect(hexchess.turn).toBe('w')
     expect(hexchess.enPassant).toBeNull()
     expect(hexchess.halfmove).toBe(0)
     expect(hexchess.fullmove).toBe(1)
   })
-  
+
   test('turn', () => {
     const white = new Hexchess('1/3/5/7/9/11/11/11/11/11/11 w - 0 1')
     expect(white.turn).toBe('w')
-  
+
     const black = new Hexchess('1/3/5/7/9/11/11/11/11/11/11 b - 0 1')
     expect(black.turn).toBe('b')
-  
+
     expect(() => new Hexchess('1/3/5/7/9/11/11/11/11/11/11 x - 0 1"')).toThrowError()
   })
-  
+
   test('halfmove', () => {
     const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/11/11 w - 5 1')
-  
+
     expect(hexchess.halfmove).toBe(5)
   })
-  
+
   test('fullmove', () => {
     const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/11/11 w - 0 10')
-  
+
     expect(hexchess.fullmove).toBe(10)
   })
 })

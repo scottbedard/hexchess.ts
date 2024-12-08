@@ -231,7 +231,7 @@ describe('parseMove', () => {
   })
 
   test('without promotion', () => {
-    expect(parseMove('a1b2')).toEqual({ from: 'a1', to: 'b2', })
+    expect(parseMove('a1b2')).toEqual({ from: 'a1', to: 'b2' })
   })
 
   test('with promotion', () => {
@@ -242,12 +242,10 @@ describe('parseMove', () => {
     expect(() => parseMove('a')).toThrowError()
   })
 
-  
   test('missing third character', () => {
     expect(() => parseMove('a1')).toThrowError()
   })
 
-  
   test('invalid second character', () => {
     expect(() => parseMove('ax')).toThrowError()
   })

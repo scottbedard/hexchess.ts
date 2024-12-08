@@ -1,7 +1,7 @@
 import { Hexchess } from '@/hexchess'
 import { getColor } from '@/board'
 import { graph, promotionPositions, startingPositions } from '@/constants'
-import type { Color, Move, Position, Vec } from '@/types'
+import type { Color, Move, Position } from '@/types'
 
 export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): Move[] {
   const moves: Move[] = []
