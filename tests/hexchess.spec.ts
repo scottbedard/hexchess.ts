@@ -293,6 +293,64 @@ describe('apply', () => {
 
     expect(hexchess.board.g6).toBeNull()
   })
+
+  test('promote black queen', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/11 b - 0 1')
+    hexchess.apply('f2f1q')
+    expect(hexchess.board.f1).toBe('q')
+  })
+
+  test('promote black bishop', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/11 b - 0 1')
+    hexchess.apply('f2f1b')
+    expect(hexchess.board.f1).toBe('b')
+  })
+
+  test('promote black rook', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/11 b - 0 1')
+    hexchess.apply('f2f1r')
+    expect(hexchess.board.f1).toBe('r')
+  })
+
+  test('promote black knight', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/11 b - 0 1')
+    hexchess.apply('f2f1n')
+    expect(hexchess.board.f1).toBe('n')
+  })
+
+  test('promote white queen', () => {
+    const hexchess = new Hexchess('1/1P1/5/7/9/11/11/11/11/11/11 w - 0 1')
+    hexchess.apply('f10f11q')
+    expect(hexchess.board.f11).toBe('Q')
+  })
+
+  test('promote white bishop', () => {
+    const hexchess = new Hexchess('1/1P1/5/7/9/11/11/11/11/11/11 w - 0 1')
+    hexchess.apply('f10f11b')
+    expect(hexchess.board.f11).toBe('B')
+  })
+
+  test('promote white rook', () => {
+    const hexchess = new Hexchess('1/1P1/5/7/9/11/11/11/11/11/11 w - 0 1')
+    hexchess.apply('f10f11r')
+    expect(hexchess.board.f11).toBe('R')
+  })
+
+  test('promote white knight', () => {
+    const hexchess = new Hexchess('1/1P1/5/7/9/11/11/11/11/11/11 w - 0 1')
+    hexchess.apply('f10f11n')
+    expect(hexchess.board.f11).toBe('N')
+  })
+
+  test('white cannot promote on black promotion position', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/11/qP9 w - 0 1')
+    expect(() => hexchess.apply('b1a1q')).toThrowError()
+  })
+
+  test('black cannot promote on white promotion position', () => {
+    const hexchess = new Hexchess('1/3/5/7/p8/Q10/11/11/11/11/11 b - 0 1')
+    expect(() => hexchess.apply('b7a6q')).toThrowError()
+  })
 })
 
 describe('findKing', () => {
@@ -327,5 +385,11 @@ describe('toString', () => {
     const hexchess = Hexchess.initial()
 
     expect(hexchess.toString()).toBe(initialPosition)
+  })
+
+  test('with en passant', () => {
+    const hexchess = Hexchess.initial()
+    hexchess.apply('g4g6')
+    expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/6P4/5P5/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b g5 0 1')
   })
 })

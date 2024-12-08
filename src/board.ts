@@ -117,14 +117,6 @@ export function isPosition(source: string): source is Position {
 }
 
 /**
- * Test for promotion position
- */
-export function isPromotionPosition(position: Position): boolean {
-  return promotionPositions['b'].includes(position) ||
-    promotionPositions['w'].includes(position)
-}
-
-/**
  * Parse a board string
  */
 export function parseBoard(source: string): Board {
@@ -221,7 +213,10 @@ export function parseMove(source: string): Move {
       rest === 'q' ||
       rest === 'r'
     ) {
-      if (!isPromotionPosition(to)) {
+      if (
+        !promotionPositions['b'].includes(to) &&
+        !promotionPositions['w'].includes(to)
+      ) {
         throw new Error('Parse move failed: invalid promotion position')
       }
 

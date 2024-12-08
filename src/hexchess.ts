@@ -2,7 +2,6 @@ import {
   createBoard,
   getColor,
   isPosition,
-  isPromotionPosition,
   parseBoard,
   parseMove,
   stringifyBoard
@@ -13,7 +12,7 @@ import { getKnightMoves } from './pieces/knight'
 import { getPawnMoves } from './pieces/pawn'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
-import { graph, initialPosition, positions } from './constants'
+import { graph, initialPosition, positions, promotionPositions } from './constants'
 import type { Board, Move, Piece, Position } from './types'
 
 export class Hexchess {
@@ -149,14 +148,14 @@ export class Hexchess {
     // set to and from positions
     this.board[move.from] = null
 
-    if (
-      (piece === 'p' || piece === 'P') &&
-      move.promotion &&
-      isPromotionPosition(move.to)
-    ) {
-      this.board[move.to] = color === 'b'
-        ? move.promotion.toLowerCase() as Piece
-        : move.promotion.toUpperCase() as Piece
+    if (move.promotion) {
+      if (piece === 'p' && promotionPositions.b.includes(move.to)) {
+        this.board[move.to] = move.promotion.toLowerCase() as Piece
+      } else if (piece === 'P' && promotionPositions.w.includes(move.to)) {
+        this.board[move.to] = move.promotion.toUpperCase() as Piece
+      } else {
+        throw new Error(`illegal promotion: ${move.from}${move.to}${move.promotion}`)
+      }
     } else {
       this.board[move.to] = piece
     }
