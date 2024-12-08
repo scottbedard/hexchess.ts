@@ -1,6 +1,7 @@
 # [`hexchess.ts`](https://github.com/scottbedard/hexchess.ts)
 
 [![Build](https://github.com/scottbedard/hexchess.ts/actions/workflows/build.yml/badge.svg)](https://github.com/scottbedard/hexchess.ts/actions/workflows/build.yml)
+[![Coverage](https://codecov.io/gh/scottbedard/hexchess.ts/graph/badge.svg?token=VW6bvs4YU5)](https://codecov.io/gh/scottbedard/hexchess.ts)
 [![NPM](https://img.shields.io/npm/v/%40bedard%2Fhexchess)](https://www.npmjs.com/package/@bedard/hexchess)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/scottbedard/hexchess.ts/blob/main/LICENSE)
 
