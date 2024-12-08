@@ -1,6 +1,7 @@
 import { createBoard } from '@/board'
 import { describe, expect, test } from 'vitest'
 import { Hexchess } from '@/index'
+import { emptyPosition, initialPosition } from '@/constants'
 
 describe('initialization', () => {
   test('empty', () => {
@@ -138,6 +139,16 @@ describe('initialization', () => {
   })
 })
 
+describe('apply', () => {
+  test.todo('single move', () => {
+    const hexchess = Hexchess.initial()
+
+    hexchess.apply('g4g5')
+
+    // ...
+  })
+})
+
 describe('findKing', () => {
   test('black', () => {
     const hexchess = new Hexchess('1/3/2k2/7/9/11/11/11/5K5/11/11 w - 0 1')
@@ -156,5 +167,19 @@ describe('findKing', () => {
 
     expect(hexchess.findKing('b')).toBe(null)
     expect(hexchess.findKing('w')).toBe(null)
+  })
+})
+
+describe('toString', () => {
+  test('empty', () => {
+    const hexchess = new Hexchess()
+
+    expect(hexchess.toString()).toBe(emptyPosition)
+  })
+
+  test('initial', () => {
+    const hexchess = Hexchess.initial()
+
+    expect(hexchess.toString()).toBe(initialPosition)
   })
 })

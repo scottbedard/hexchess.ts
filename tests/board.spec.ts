@@ -1,6 +1,7 @@
+import { createBoard, isPosition, parseBoard, parseMove, stringifyBoard, walk } from '@/board'
 import { describe, expect, test } from 'vitest'
-import { createBoard, isPosition, parseBoard, parseMove, walk } from '@/board'
-import { positions } from '@/constants'
+import { Hexchess } from '@/index'
+import { emptyPosition, initialPosition, positions } from '@/constants'
 import type { Direction, Position } from '@/types'
 
 test('isPosition', () => {
@@ -286,6 +287,20 @@ describe('parseMove', () => {
 
   test('invalid promotion position', () => {
     expect(() => parseMove('f5f6q')).toThrowError()
+  })
+})
+
+describe('stringifyBoard', () => {
+  test('empty', () => {
+    const hexchess = new Hexchess()
+
+    expect(stringifyBoard(hexchess.board)).toBe(emptyPosition.split(' ').shift())
+  })
+
+  test('initial', () => {
+    const hexchess = Hexchess.initial()
+
+    expect(stringifyBoard(hexchess.board)).toBe(initialPosition.split(' ').shift())
   })
 })
 

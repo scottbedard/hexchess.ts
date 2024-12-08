@@ -117,6 +117,14 @@ export function isPosition(source: string): source is Position {
 }
 
 /**
+ * Test for promotion position
+ */
+export function isPromotionPosition(position: Position): boolean {
+  return promotionPositions['b'].includes(position) ||
+    promotionPositions['w'].includes(position)
+}
+
+/**
  * Parse a board string
  */
 export function parseBoard(source: string): Board {
@@ -213,10 +221,7 @@ export function parseMove(source: string): Move {
       rest === 'q' ||
       rest === 'r'
     ) {
-      if (
-        !promotionPositions['b'].includes(to) &&
-        !promotionPositions['w'].includes(to)
-      ) {
+      if (!isPromotionPosition(to)) {
         throw new Error('Parse move failed: invalid promotion position')
       }
 
@@ -247,6 +252,41 @@ export function step(
       return position
     }
   }
+}
+
+/**
+ * Stringify board
+ */
+export function stringifyBoard(board: Board): string {
+  return positions
+    .map((position, index): string => {
+      const char = board[position] || '_'
+
+      return (
+        index === 0 ||
+        index === 3 ||
+        index === 8 ||
+        index === 15 ||
+        index === 24 ||
+        index === 35 ||
+        index === 46 ||
+        index === 57 ||
+        index === 68 ||
+        index === 79
+      ) ? `${char}/` : char
+    })
+    .join('')
+    .replaceAll('___________', '11')
+    .replaceAll('__________', '10')
+    .replaceAll('_________', '9')
+    .replaceAll('________', '8')
+    .replaceAll('_______', '7')
+    .replaceAll('______', '6')
+    .replaceAll('_____', '5')
+    .replaceAll('____', '4')
+    .replaceAll('___', '3')
+    .replaceAll('__', '2')
+    .replaceAll('_', '1')
 }
 
 /**
