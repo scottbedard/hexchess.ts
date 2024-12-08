@@ -409,6 +409,27 @@ describe('findKing', () => {
   })
 })
 
+describe('movesUnsafe', () => {
+  test('returns self-check moves', () => {
+    const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.movesUnsafe('f6')).toEqual([
+      { from: 'f6', to: 'f7' },
+      { from: 'f6', to: 'g7' },
+      { from: 'f6', to: 'g6' },
+      { from: 'f6', to: 'h5' },
+      { from: 'f6', to: 'g5' },
+      { from: 'f6', to: 'g4' },
+      { from: 'f6', to: 'f5' },
+      { from: 'f6', to: 'e4' },
+      { from: 'f6', to: 'e5' },
+      { from: 'f6', to: 'd5' },
+      { from: 'f6', to: 'e6' },
+      { from: 'f6', to: 'e7' },
+    ])
+  })
+})
+
 test('getColor', () => {
   const hexchess = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
 
