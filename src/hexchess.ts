@@ -243,7 +243,48 @@ export class Hexchess {
    * Get all legal moves from a position
    */
   moves(position: Position) {
-    return this.movesUnsafe(position)
+    // let color = match self.color(position) {
+    //   Some(val) => val,
+    //   None => return vec![],
+    // };
+
+    // self
+    //   .targets_unsafe(position)
+    //   .into_iter()
+    //   .filter(|&notation| {
+    //       let mut hexchess = self.clone();
+    //       let _ = hexchess.apply_unsafe(notation);
+
+    //       match hexchess.find_king(color) {
+    //           Some(p) => !hexchess.is_threatened(p),
+    //           None => true,
+    //       }
+    //   })
+    //   .collect()
+    const piece = this.board[position]
+
+    if (!piece) {
+      return []
+    }
+
+    const color = getColor(piece)
+  
+    return this
+      .movesUnsafe(position)
+      .filter(move => {
+        const king = this.findKing(color)
+  
+        if (king) {
+          const clone = this.clone()
+          clone.applyUnsafe(move)
+
+          if (clone.isThreatened(king)) {
+            return false
+          }
+        }
+
+        return true
+      })
   }
 
   /**

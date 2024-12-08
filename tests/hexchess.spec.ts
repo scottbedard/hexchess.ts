@@ -294,6 +294,18 @@ describe('apply', () => {
     expect(hexchess.board.g6).toBeNull()
   })
 
+  test('cannot step out of a pin', () => {
+    const hexchess = new Hexchess()
+    hexchess.board.f7 = 'K'
+    hexchess.board.f6 = 'R'
+    hexchess.board.f5 = 'q'
+
+    const moves = hexchess.moves('f6')
+
+    expect(moves.length).toBe(1)
+    expect(moves[0].to).toBe('f5')
+  })
+
   test('promote black queen', () => {
     const hexchess = new Hexchess('1/3/5/7/9/11/11/11/11/5p5/11 b - 0 1')
     hexchess.apply('f2f1q')
