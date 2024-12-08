@@ -260,11 +260,7 @@ export class Hexchess {
 
         const king = clone.findKing(color)
 
-        if (king && clone.isThreatened(king)) {
-          return false
-        }
-
-        return true
+        return !king || !clone.isThreatened(king)
       })
   }
 
