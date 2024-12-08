@@ -250,7 +250,7 @@ export class Hexchess {
     }
 
     const color = getColor(piece)
-  
+
     return this
       .movesUnsafe(position)
       .filter(move => {
@@ -264,7 +264,7 @@ export class Hexchess {
           return false
         }
 
-        return true;
+        return true
       })
   }
 
