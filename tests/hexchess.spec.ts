@@ -398,6 +398,28 @@ describe('applyUnsafe', () => {
   })
 })
 
+test('color', () => {
+  const hexchess = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
+
+  expect(hexchess.color('b')).toEqual(['a4'])
+  expect(hexchess.color('w')).toEqual(['l4'])
+})
+
+describe('currentMoves', () => {
+  test('current turn only', () => {
+    const hexchess = new Hexchess('1/3/5/7/9/11/5P5/11/11/11/11 w - 0 1')
+
+    expect(hexchess.currentMoves()).toEqual([
+      { from: 'f5', to: 'f6' },
+      { from: 'f5', to: 'f7' },
+    ])
+
+    hexchess.turn = 'b'
+
+    expect(hexchess.currentMoves()).toEqual([])
+  })
+})
+
 describe('findKing', () => {
   test('black', () => {
     const hexchess = Hexchess.init()
@@ -438,53 +460,23 @@ describe('isCheckmate', () => {
     const hexchess = new Hexchess('K/3/5/3q3/2q6/11/11/11/11/11/11 b - 0 1')
 
     expect(hexchess.isCheckmate()).toBe(false)
-    
+
     hexchess.apply('d7f9')
-    
+
     expect(hexchess.isCheckmate()).toBe(true)
   })
 })
 
-describe('moves', () => {
-  test('returns legal moves', () => {
-    const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
+describe('isStalemate', () => {
+  test('stalemate', () => {
+    const hexchess = new Hexchess('k/1P1/5/3K3/9/11/11/11/11/11/11 w - 0 1')
 
-    expect(hexchess.moves('f6')).toEqual([
-      { from: 'f6', to: 'f7' },
-      { from: 'f6', to: 'g5' },
-      { from: 'f6', to: 'g4' },
-      { from: 'f6', to: 'e4' },
-      { from: 'f6', to: 'e5' },
-    ])
+    expect(hexchess.isStalemate()).toBe(false)
+
+    hexchess.apply('f8f9')
+
+    expect(hexchess.isStalemate()).toBe(true)
   })
-})
-
-describe('movesUnsafe', () => {
-  test('returns self-check moves', () => {
-    const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
-
-    expect(hexchess.movesUnsafe('f6')).toEqual([
-      { from: 'f6', to: 'f7' },
-      { from: 'f6', to: 'g7' },
-      { from: 'f6', to: 'g6' },
-      { from: 'f6', to: 'h5' },
-      { from: 'f6', to: 'g5' },
-      { from: 'f6', to: 'g4' },
-      { from: 'f6', to: 'f5' },
-      { from: 'f6', to: 'e4' },
-      { from: 'f6', to: 'e5' },
-      { from: 'f6', to: 'd5' },
-      { from: 'f6', to: 'e6' },
-      { from: 'f6', to: 'e7' },
-    ])
-  })
-})
-
-test('getColor', () => {
-  const hexchess = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
-
-  expect(hexchess.getColor('b')).toEqual(['a4'])
-  expect(hexchess.getColor('w')).toEqual(['l4'])
 })
 
 describe('isThreatened', () => {
@@ -521,6 +513,41 @@ describe('isThreatened', () => {
 
     hexchess.turn = 'w'
     expect(hexchess.isThreatened('f6')).toBe(true)
+  })
+})
+
+describe('moves', () => {
+  test('returns legal moves', () => {
+    const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f6')).toEqual([
+      { from: 'f6', to: 'f7' },
+      { from: 'f6', to: 'g5' },
+      { from: 'f6', to: 'g4' },
+      { from: 'f6', to: 'e4' },
+      { from: 'f6', to: 'e5' },
+    ])
+  })
+})
+
+describe('movesUnsafe', () => {
+  test('returns self-check moves', () => {
+    const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.movesUnsafe('f6')).toEqual([
+      { from: 'f6', to: 'f7' },
+      { from: 'f6', to: 'g7' },
+      { from: 'f6', to: 'g6' },
+      { from: 'f6', to: 'h5' },
+      { from: 'f6', to: 'g5' },
+      { from: 'f6', to: 'g4' },
+      { from: 'f6', to: 'f5' },
+      { from: 'f6', to: 'e4' },
+      { from: 'f6', to: 'e5' },
+      { from: 'f6', to: 'd5' },
+      { from: 'f6', to: 'e6' },
+      { from: 'f6', to: 'e7' },
+    ])
   })
 })
 

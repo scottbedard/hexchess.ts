@@ -119,6 +119,15 @@ export class Hexchess {
   }
 
   /**
+   * Get all legal moves for the current turn
+   */
+  currentMoves() {
+    return this
+      .color(this.turn)
+      .flatMap(position => this.moves(position))
+  }
+
+  /**
    * Apply a move, regardless of turn or legality
    */
   applyUnsafe(move: Move) {
@@ -198,6 +207,13 @@ export class Hexchess {
   }
 
   /**
+   * Get all positions occupied by a color
+   */
+  color(color: Color) {
+    return positions.filter(p => this.board[p] && getColor(this.board[p]) === color)
+  }
+
+  /**
    * Find a player's king
    */
   findKing(color: 'w' | 'b'): Position | null {
@@ -213,13 +229,6 @@ export class Hexchess {
   }
 
   /**
-   * Get all positions occupied by a color
-   */
-  getColor(color: Color) {
-    return positions.filter(p => this.board[p] && getColor(this.board[p]) === color)
-  }
-
-  /**
    * Test if king is in check
    */
   isCheck(): boolean {
@@ -230,30 +239,23 @@ export class Hexchess {
     }
 
     return this
-      .getColor(this.turn === 'w' ? 'b' : 'w')
-      .some(from => this.movesUnsafe(from).some(move => move.to === king))
+      .color(this.turn === 'b' ? 'w' : 'b')
+      .flatMap(position => this.moves(position))
+      .some(move => move.to === king)
   }
 
+  /**
+   * Test if the board is in checkmate
+   */
   isCheckmate(): boolean {
-    const king = this.findKing(this.turn)
+    return this.isCheck() && this.currentMoves().length === 0
+  }
 
-    if (!king || !this.isThreatened(king)) {
-      return false
-    }
-    
-    for (const position of positions) {
-      const piece = this.board[position]
-      
-      if (!piece || getColor(piece) !== this.turn) {
-        continue
-      }
-
-      if (this.moves(position).length > 0) {
-        return false
-      }
-    }
-
-    return true
+  /**
+   * Test if the board is in stalemate
+   */
+  isStalemate(): boolean {
+    return !this.isCheck() && this.currentMoves().length === 0
   }
 
   /**
@@ -267,7 +269,7 @@ export class Hexchess {
     }
 
     return this
-      .getColor(getColor(piece) === 'w' ? 'b' : 'w')
+      .color(getColor(piece) === 'w' ? 'b' : 'w')
       .some(from => this.movesUnsafe(from).some(move => move.to === position))
   }
 
