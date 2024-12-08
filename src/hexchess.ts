@@ -176,7 +176,7 @@ export class Hexchess {
 
     // set en passant
     if (piece === 'p') {
-      if (move.from === 'b5' && move.to === 'b7') this.enPassant = 'b6'
+      if (move.from === 'b7' && move.to === 'b5') this.enPassant = 'b6'
       else if (move.from === 'c7' && move.to === 'c5') this.enPassant = 'c6'
       else if (move.from === 'd7' && move.to === 'd5') this.enPassant = 'd6'
       else if (move.from === 'e7' && move.to === 'e5') this.enPassant = 'e6'
@@ -217,30 +217,33 @@ export class Hexchess {
    * Get all legal moves from a position
    */
   moves(position: Position) {
-    const unsafe = (pos: Position) => {
-      const piece = this.board[pos]
+    return this.movesUnsafe(position)
+  }
 
-      if (!piece) {
-        return []
-      }
+  /**
+   * Get all moves from a position, including ones that result in self-check
+   */
+  movesUnsafe(position: Position) {
+    const piece = this.board[position]
 
-      return {
-        b: getBishopMoves(this, pos, 'b'),
-        B: getBishopMoves(this, pos, 'w'),
-        k: getKingMoves(this, pos, 'b'),
-        K: getKingMoves(this, pos, 'w'),
-        n: getKnightMoves(this, pos, 'b'),
-        N: getKnightMoves(this, pos, 'w'),
-        p: getPawnMoves(this, pos, 'b'),
-        P: getPawnMoves(this, pos, 'w'),
-        q: getQueenMoves(this, pos, 'b'),
-        Q: getQueenMoves(this, pos, 'w'),
-        r: getRookMoves(this, pos, 'b'),
-        R: getRookMoves(this, pos, 'w'),
-      }[piece]
+    if (!piece) {
+      return []
     }
 
-    return unsafe(position)
+    return {
+      b: getBishopMoves(this, position, 'b'),
+      B: getBishopMoves(this, position, 'w'),
+      k: getKingMoves(this, position, 'b'),
+      K: getKingMoves(this, position, 'w'),
+      n: getKnightMoves(this, position, 'b'),
+      N: getKnightMoves(this, position, 'w'),
+      p: getPawnMoves(this, position, 'b'),
+      P: getPawnMoves(this, position, 'w'),
+      q: getQueenMoves(this, position, 'b'),
+      Q: getQueenMoves(this, position, 'w'),
+      r: getRookMoves(this, position, 'b'),
+      R: getRookMoves(this, position, 'w'),
+    }[piece]
   }
 
   /**
