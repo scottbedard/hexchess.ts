@@ -149,9 +149,9 @@ hexchess.movesUnsafe() // [{ from: 'f6', to: 'f7' }, { from: 'f6', to: 'g7' }, .
 Convert a `Hexchess` instance to a string.
 
 ```ts
-const hexchess = Hexchess.init()
+const hexchess = new Hexchess()
 
-hexchess.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w - 0 1'
+hexchess.toString() // '1/3/5/7/9/11/11/11/11/11/11 w - 0 1'
 ```
 
 ## License
