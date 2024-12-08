@@ -6,4 +6,9 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  test: {
+    coverage: {
+      reporter: ['text', 'json', 'html'],
+    },
+  }
 })

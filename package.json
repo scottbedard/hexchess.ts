@@ -7,6 +7,7 @@
     "build": "tsc --project ./tsconfig.json --emitDeclarationOnly && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "lint:fix": "eslint --flag unstable_ts_config --fix",
     "lint": "eslint --flag unstable_ts_config",
+    "test:coverage": "vitest --coverage",
     "test": "vitest",
     "types": "tsc --project ./tsconfig.json --noEmit"
   },
@@ -14,6 +15,7 @@
     "@eslint/js": "^9.16.0",
     "@rollup/plugin-typescript": "^12.1.1",
     "@stylistic/eslint-plugin": "^2.11.0",
+    "@vitest/coverage-v8": "^2.1.8",
     "eslint": "^9.16.0",
     "jiti": "^2.4.1",
     "rollup": "^4.28.1",
