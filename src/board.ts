@@ -1,5 +1,5 @@
 import { graph, positions } from '@/constants'
-import type { Board, Color, Direction, Piece, Position } from '@/types'
+import type { Board, Color, Direction, Move, Piece, Position } from '@/types'
 
 /**
  * Create board object
@@ -119,7 +119,7 @@ export function isPosition(source: string): source is Position {
 /**
  * Parse a board string
  */
-export function parseBoard(source: string) {
+export function parseBoard(source: string): Board {
   const board = createBoard()
 
   const normalized = source
@@ -180,6 +180,13 @@ export function parseBoard(source: string) {
   }
 
   return board
+}
+
+/**
+ * Parse move notation
+ */
+export function parseMove(source: string): Move {
+  throw new Error('Parse move failed')
 }
 
 /**

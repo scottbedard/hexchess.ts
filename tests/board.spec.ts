@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { createBoard, isPosition, parseBoard, walk } from '@/board'
+import { createBoard, isPosition, parseBoard, parseMove, walk } from '@/board'
 import { positions } from '@/constants'
 import type { Direction, Position } from '@/types'
 
@@ -222,6 +222,82 @@ describe('parseBoard', () => {
 
   test('error: invalid piece', () => {
     expect(() => parseBoard('x/3/5/7/9/11/11/11/11/11/11')).toThrowError()
+  })
+})
+
+describe('parseMove', () => {
+  test.todo('empty string', () => {
+    // ...
+  })
+
+  test.todo('with promotion', () => {
+    // ...
+  })
+
+  test.todo('without promotion', () => {
+    // ...
+  })
+
+  test.todo('missing from file', () => {
+    // ...
+  })
+
+  
+  test.todo('missing third character', () => {
+    // ...
+  })
+
+  
+  test.todo('invalid second character', () => {
+    // ...
+  })
+
+  test.todo('invalid to file', () => {
+    // ...
+  })
+
+  test.todo('invalid to second character', () => {
+    // ...
+  })
+
+  test.todo('missing to file', () => {
+    // ...
+  })
+
+  test.todo('missing second char', () => {
+    // ...
+  })
+
+  test.todo('invalid to rank', () => {
+    // ...
+  })
+
+  test.todo('invalid to second character', () => {
+    // ...
+  })
+
+  test.todo('invalid from position', () => {
+    // ...
+  })
+
+  test.todo('invalid promotion character', () => {
+    // ...
+  })
+
+  test.todo('identical from and to', () => {
+    // ...
+  })
+
+  test.todo('invalid second file', () => {
+    // ...
+  })
+
+  test.todo('invalid promotion position', () => {
+    // ...
+  })
+
+  test.todo('stringify', () => {
+    // ...
   })
 })
 
