@@ -3,10 +3,11 @@
   "name": "@bedard/hexchess.ts",
   "type": "module",
   "scripts": {
-    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "build": "pnpm types && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "lint:fix": "eslint --flag unstable_ts_config --fix",
     "lint": "eslint --flag unstable_ts_config",
-    "test": "vitest"
+    "test": "vitest",
+    "types": "tsc --project ./tsconfig.json"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
