@@ -388,17 +388,27 @@ describe('apply', () => {
   })
 })
 
+describe('applyUnsafe', () => {
+  test('captures pieces illegally', () => {
+    const hexchess = Hexchess.init()
+
+    hexchess.applyUnsafe({ from: 'f5', to: 'f7' })
+
+    expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppPpppp/11/11/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b f6 0 1')
+  })
+})
+
 describe('findKing', () => {
   test('black', () => {
-    const hexchess = new Hexchess('1/3/2k2/7/9/11/11/11/5K5/11/11 w - 0 1')
+    const hexchess = Hexchess.init()
 
-    expect(hexchess.findKing('b')).toBe('f9')
+    expect(hexchess.findKing('b')).toBe('g10')
   })
 
   test('white', () => {
-    const hexchess = new Hexchess('1/3/2k2/7/9/11/11/11/5K5/11/11 w - 0 1')
+    const hexchess = Hexchess.init()
 
-    expect(hexchess.findKing('w')).toBe('f3')
+    expect(hexchess.findKing('w')).toBe('g1')
   })
 
   test('void', () => {
@@ -406,6 +416,20 @@ describe('findKing', () => {
 
     expect(hexchess.findKing('b')).toBe(null)
     expect(hexchess.findKing('w')).toBe(null)
+  })
+})
+
+describe('moves', () => {
+  test('returns legal moves', () => {
+    const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.moves('f6')).toEqual([
+      { from: 'f6', to: 'f7' },
+      { from: 'f6', to: 'g5' },
+      { from: 'f6', to: 'g4' },
+      { from: 'f6', to: 'e4' },
+      { from: 'f6', to: 'e5' }
+    ])
   })
 })
 
