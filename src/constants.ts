@@ -1,4 +1,4 @@
-import type { Vec } from '@/types'
+import type { Color, Vec } from '@/types'
 
 /**
  * Board positions in FEN order.
@@ -96,6 +96,22 @@ export const positions = [
   'k1',
   'l1',
 ] as const
+
+/**
+ * Positions a color can promote from
+ */
+export const promotionPositions: Record<Color, Vec<11, typeof positions[number]>> = {
+  b: ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1', 'i1', 'k1', 'l1'],
+  w: ['a6', 'b7', 'c8', 'd9', 'e10', 'f11', 'g10', 'h9', 'i8', 'k7', 'l6'],
+} as const
+
+/**
+ * Positions a pawn can move two spaces from
+ */
+export const startingPositions: Record<Color, Vec<9, typeof positions[number]>> = {
+  b: ['b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7', 'i7', 'k7'],
+  w: ['b1', 'c2', 'd3', 'e4', 'f5', 'g4', 'h3', 'i2', 'k1'],
+} as const
 
 /**
  * This object describes the relationship of positions relative to one another.

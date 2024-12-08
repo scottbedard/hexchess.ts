@@ -226,78 +226,68 @@ describe('parseBoard', () => {
 })
 
 describe('parseMove', () => {
-  test.todo('empty string', () => {
-    // ...
+  test('empty string', () => {
+    expect(() => parseMove('')).toThrowError()
   })
 
-  test.todo('with promotion', () => {
-    // ...
+  test('without promotion', () => {
+    expect(parseMove('a1b2')).toEqual({ from: 'a1', to: 'b2', })
   })
 
-  test.todo('without promotion', () => {
-    // ...
+  test('with promotion', () => {
+    expect(parseMove('f10f11q')).toEqual({ from: 'f10', to: 'f11', promotion: 'q' })
   })
 
-  test.todo('missing from file', () => {
-    // ...
-  })
-
-  
-  test.todo('missing third character', () => {
-    // ...
+  test('missing from file', () => {
+    expect(() => parseMove('a')).toThrowError()
   })
 
   
-  test.todo('invalid second character', () => {
-    // ...
+  test('missing third character', () => {
+    expect(() => parseMove('a1')).toThrowError()
   })
 
-  test.todo('invalid to file', () => {
-    // ...
+  
+  test('invalid second character', () => {
+    expect(() => parseMove('ax')).toThrowError()
   })
 
-  test.todo('invalid to second character', () => {
-    // ...
+  test('invalid to file', () => {
+    expect(() => parseMove('a1x')).toThrowError()
+    expect(() => parseMove('a10x')).toThrowError()
+    expect(() => parseMove('a11x')).toThrowError()
   })
 
-  test.todo('missing to file', () => {
-    // ...
+  test('invalid to second character', () => {
+    expect(() => parseMove('a1ax')).toThrowError()
   })
 
-  test.todo('missing second char', () => {
-    // ...
+  test('missing to file', () => {
+    expect(() => parseMove('a10')).toThrowError()
   })
 
-  test.todo('invalid to rank', () => {
-    // ...
+  test('invalid to rank', () => {
+    expect(() => parseMove('a1f12')).toThrowError()
   })
 
-  test.todo('invalid to second character', () => {
-    // ...
+  test('invalid to second character', () => {
+    expect(() => parseMove('a1abc2')).toThrowError()
   })
 
-  test.todo('invalid from position', () => {
-    // ...
+  test('invalid from position', () => {
+    expect(() => parseMove('a9a1')).toThrowError()
   })
 
-  test.todo('invalid promotion character', () => {
-    // ...
+  test('invalid promotion character', () => {
+    expect(() => parseMove('f10f11x')).toThrowError()
   })
 
-  test.todo('identical from and to', () => {
-    // ...
+  test('identical from and to', () => {
+    expect(() => parseMove('a1a1')).toThrowError()
   })
 
-  test.todo('invalid second file', () => {
-    // ...
-  })
-
-  test.todo('invalid promotion position', () => {
-    // ...
-  })
-
-  test.todo('stringify', () => {
-    // ...
+  test('invalid promotion position', () => {
+    expect(() => parseMove('f5f6q')).toThrowError()
   })
 })
 

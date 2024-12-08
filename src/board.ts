@@ -1,4 +1,4 @@
-import { graph, positions } from '@/constants'
+import { graph, positions, promotionPositions } from '@/constants'
 import type { Board, Color, Direction, Move, Piece, Position } from '@/types'
 
 /**
@@ -186,7 +186,47 @@ export function parseBoard(source: string): Board {
  * Parse move notation
  */
 export function parseMove(source: string): Move {
-  throw new Error('Parse move failed')
+  const from = positions.find(position => source.startsWith(position))
+
+  if (!from) {
+    throw new Error('Parse move failed: invalid from position')
+  }
+
+  let rest = source.slice(from.length)
+
+  const to = positions.find(position => rest.startsWith(position))
+
+  if (!to) {
+    throw new Error('Parse move failed: invalid to position')
+  }
+
+  if (from === to) {
+    throw new Error('Parse move failed: identical from and to positions')
+  }
+
+  rest = rest.slice(to.length)
+
+  if (rest) {
+    if (
+      rest === 'b' ||
+      rest === 'n' ||
+      rest === 'q' ||
+      rest === 'r'
+    ) {
+      if (
+        !promotionPositions['b'].includes(to) &&
+        !promotionPositions['w'].includes(to)
+      ) {
+        throw new Error('Parse move failed: invalid promotion position')
+      }
+
+      return { from, to, promotion: rest }
+    }
+
+    throw new Error('Parse move failed: invalid promotion')
+  }
+
+  return { from, to }
 }
 
 /**

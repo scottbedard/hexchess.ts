@@ -191,10 +191,10 @@ describe('promotion', () => {
     const hexchess = new Hexchess('1/1P1/5/7/9/11/11/11/11/11/11 w - 0 1')
 
     expect(hexchess.moves('f10')).toEqual([
-      { from: 'f10', to: 'f11', promotion: 'Q' },
-      { from: 'f10', to: 'f11', promotion: 'R' },
-      { from: 'f10', to: 'f11', promotion: 'B' },
-      { from: 'f10', to: 'f11', promotion: 'N' },
+      { from: 'f10', to: 'f11', promotion: 'q' },
+      { from: 'f10', to: 'f11', promotion: 'r' },
+      { from: 'f10', to: 'f11', promotion: 'b' },
+      { from: 'f10', to: 'f11', promotion: 'n' },
     ])
   })
 
@@ -202,10 +202,10 @@ describe('promotion', () => {
     const hexchess = new Hexchess('R/kPR/5/7/9/11/11/11/11/11/11 w - 0 1')
 
     expect(hexchess.moves('f10')).toEqual([
-      { from: 'f10', to: 'e10', promotion: 'Q' },
-      { from: 'f10', to: 'e10', promotion: 'R' },
-      { from: 'f10', to: 'e10', promotion: 'B' },
-      { from: 'f10', to: 'e10', promotion: 'N' },
+      { from: 'f10', to: 'e10', promotion: 'q' },
+      { from: 'f10', to: 'e10', promotion: 'r' },
+      { from: 'f10', to: 'e10', promotion: 'b' },
+      { from: 'f10', to: 'e10', promotion: 'n' },
     ])
   })
 
@@ -213,10 +213,10 @@ describe('promotion', () => {
     const hexchess = new Hexchess('R/RPk/5/7/9/11/11/11/11/11/11 w - 0 1')
 
     expect(hexchess.moves('f10')).toEqual([
-      { from: 'f10', to: 'g10', promotion: 'Q' },
-      { from: 'f10', to: 'g10', promotion: 'R' },
-      { from: 'f10', to: 'g10', promotion: 'B' },
-      { from: 'f10', to: 'g10', promotion: 'N' },
+      { from: 'f10', to: 'g10', promotion: 'q' },
+      { from: 'f10', to: 'g10', promotion: 'r' },
+      { from: 'f10', to: 'g10', promotion: 'b' },
+      { from: 'f10', to: 'g10', promotion: 'n' },
     ])
   })
 })

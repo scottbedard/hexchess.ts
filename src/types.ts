@@ -8,15 +8,15 @@ export type Direction = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11
 
 export type Move = {
   from: Position
-  to: Position
   promotion?: PromotionPiece
+  to: Position
 }
 
 export type Piece = 'p' | 'r' | 'n' | 'b' | 'q' | 'k' | 'P' | 'R' | 'N' | 'B' | 'Q' | 'K'
 
 export type Position = typeof positions[number]
 
-export type PromotionPiece = Exclude<Piece, 'p' | 'P' | 'k' | 'K'>
+export type PromotionPiece = 'q' | 'r' | 'b' | 'n'
 
 export type Vec<
   T extends number,
