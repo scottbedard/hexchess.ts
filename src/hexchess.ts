@@ -13,7 +13,7 @@ import { getPawnMoves } from './pieces/pawn'
 import { getQueenMoves } from './pieces/queen'
 import { getRookMoves } from './pieces/rook'
 import { graph, initialPosition, positions, promotionPositions } from './constants'
-import type { Board, Move, Piece, Position } from './types'
+import type { Board, Color, Move, Piece, Position } from './types'
 
 export class Hexchess {
   board: Board = createBoard()
@@ -213,6 +213,13 @@ export class Hexchess {
   }
 
   /**
+   * Get all positions occupied by a color
+   */
+  getColor(color: Color) {
+    return positions.filter(p => this.board[p] && getColor(this.board[p]) === color)
+  }
+
+  /**
    * Test if a position is threatened
    */
   isThreatened(position: Position) {
@@ -222,21 +229,9 @@ export class Hexchess {
       return false
     }
 
-    const color = getColor(piece)
-
-    for (let i = 0; i < positions.length; i++) {
-      const piece = this.board[positions[i]]
-
-      if (!piece || getColor(piece) === color) {
-        continue
-      }
-
-      if (this.movesUnsafe(positions[i]).some(move => move.to === position)) {
-        return true
-      }
-    }
-
-    return false
+    return this
+      .getColor(getColor(piece) === 'w' ? 'b' : 'w')
+      .some(from => this.movesUnsafe(from).some(move => move.to === position))
   }
 
   /**
@@ -293,7 +288,7 @@ export class Hexchess {
   /**
    * Create hexchess in initial position
    */
-  static initial() {
+  static init() {
     return new Hexchess(initialPosition)
   }
 

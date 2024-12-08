@@ -141,7 +141,7 @@ describe('initialization', () => {
 
 describe('apply', () => {
   test('single move', () => {
-    const hexchess = Hexchess.initial()
+    const hexchess = Hexchess.init()
 
     hexchess.apply('g4g5')
 
@@ -149,7 +149,7 @@ describe('apply', () => {
   })
 
   test('multiple moves', () => {
-    const hexchess = Hexchess.initial()
+    const hexchess = Hexchess.init()
 
     hexchess.apply('g4g5 e7e6 f5f6 e6f6 g5f6')
 
@@ -409,6 +409,13 @@ describe('findKing', () => {
   })
 })
 
+test('getColor', () => {
+  const hexchess = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
+
+  expect(hexchess.getColor('b')).toEqual(['a4'])
+  expect(hexchess.getColor('w')).toEqual(['l4'])
+})
+
 describe('isThreatened', () => {
   test('unattacked position is not threatened', () => {
     const hexchess = new Hexchess()
@@ -454,13 +461,13 @@ describe('toString', () => {
   })
 
   test('initial', () => {
-    const hexchess = Hexchess.initial()
+    const hexchess = Hexchess.init()
 
     expect(hexchess.toString()).toBe(initialPosition)
   })
 
   test('with en passant', () => {
-    const hexchess = Hexchess.initial()
+    const hexchess = Hexchess.init()
     hexchess.apply('g4g6')
     expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/6P4/5P5/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b g5 0 1')
   })

@@ -298,7 +298,7 @@ describe('stringifyBoard', () => {
   })
 
   test('initial', () => {
-    const hexchess = Hexchess.initial()
+    const hexchess = Hexchess.init()
 
     expect(stringifyBoard(hexchess.board)).toBe(initialPosition.split(' ').shift())
   })
