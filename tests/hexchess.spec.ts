@@ -381,7 +381,7 @@ describe('isThreatened', () => {
 
     expect(hexchess.isThreatened('g10')).toBe(false)
   })
-    
+
   test('threatened by enemy piece', () => {
     const hexchess = new Hexchess()
     hexchess.board.g10 = 'K'

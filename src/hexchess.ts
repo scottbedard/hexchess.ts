@@ -239,37 +239,6 @@ export class Hexchess {
     return false
   }
 
-//   pub fn is_threatened(&self, position: Position) -> bool {
-//     let piece = match self.board.get(position) {
-//         Some(val) => val,
-//         None => return false,
-//     };
-
-//     let enemy_color = match piece.color() {
-//         Color::White => Color::Black,
-//         Color::Black => Color::White,
-//     }; 
-
-//     for p in SORTED_POSITIONS.iter() {
-//         let piece: Piece = match self.board.get(*p) {
-//             Some(val) => val,
-//             None => continue,
-//         };
-
-//         if piece.color() != enemy_color {
-//             continue;
-//         }
-        
-//         for target in self.targets_unsafe(*p).iter() {
-//             if target.to == position {
-//                 return true;
-//             }
-//         }
-//     }
-
-//     false
-// }
-
   /**
    * Get all legal moves from a position
    */
