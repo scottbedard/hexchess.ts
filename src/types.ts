@@ -1,5 +1,3 @@
-import type { positions } from '@/constants'
-
 /** Hexchess game board */
 export type Board = Record<Position, Piece | null>
 

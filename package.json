@@ -1,13 +1,14 @@
 {
   "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
   "name": "@bedard/hexchess.ts",
   "type": "module",
   "scripts": {
-    "build": "pnpm types && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "build": "tsc --project ./tsconfig.json --emitDeclarationOnly && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "lint:fix": "eslint --flag unstable_ts_config --fix",
     "lint": "eslint --flag unstable_ts_config",
     "test": "vitest",
-    "types": "tsc --project ./tsconfig.json"
+    "types": "tsc --project ./tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
