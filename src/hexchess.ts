@@ -15,15 +15,33 @@ import { getRookMoves } from './pieces/rook'
 import { graph, initialPosition, positions, promotionPositions } from './constants'
 import type { Board, Color, Move, Piece, Position } from './types'
 
+/**
+ * Hexchess game instance
+ */
 export class Hexchess {
+  /**
+   * Key-value store of board positions and their pieces.
+   */
   board: Board = createBoard()
 
+  /**
+   * Position eligible for en passant capture.
+   */
   enPassant: Position | null = null
 
+  /**
+   * Current turn color.
+   */
   turn: 'w' | 'b' = 'w'
 
+  /**
+   * Number of halfmoves since last pawn move or capture.
+   */
   halfmove: number = 0
 
+  /**
+   * The number of the full moves. It starts at 1 and is incremented after black's move.
+   */
   fullmove: number = 1
 
   /**
@@ -69,7 +87,7 @@ export class Hexchess {
   /**
    * Apply legal moves to the game
    */
-  apply(source: string) {
+  apply(source: string): void {
     const clone = this.clone()
 
     const sequence = source
@@ -104,33 +122,9 @@ export class Hexchess {
   }
 
   /**
-   * Clone hexchess instance
-   */
-  clone() {
-    const hexchess = new Hexchess()
-
-    hexchess.board = { ...this.board }
-    hexchess.enPassant = this.enPassant
-    hexchess.turn = this.turn
-    hexchess.halfmove = this.halfmove
-    hexchess.fullmove = this.fullmove
-
-    return hexchess
-  }
-
-  /**
-   * Get all legal moves for the current turn
-   */
-  currentMoves() {
-    return this
-      .color(this.turn)
-      .flatMap(position => this.moves(position))
-  }
-
-  /**
    * Apply a move, regardless of turn or legality
    */
-  applyUnsafe(move: Move) {
+  applyUnsafe(move: Move): void {
     const piece = this.board[move.from]
 
     if (!piece) {
@@ -207,16 +201,40 @@ export class Hexchess {
   }
 
   /**
+   * Clone hexchess instance
+   */
+  clone(): Hexchess {
+    const hexchess = new Hexchess()
+
+    hexchess.board = { ...this.board }
+    hexchess.enPassant = this.enPassant
+    hexchess.turn = this.turn
+    hexchess.halfmove = this.halfmove
+    hexchess.fullmove = this.fullmove
+
+    return hexchess
+  }
+
+  /**
+   * Get all legal moves for the current turn
+   */
+  currentMoves(): Move[] {
+    return this
+      .color(this.turn)
+      .flatMap(position => this.moves(position))
+  }
+
+  /**
    * Get all positions occupied by a color
    */
-  color(color: Color) {
+  color(color: Color): Position[] {
     return positions.filter(p => this.board[p] && getColor(this.board[p]) === color)
   }
 
   /**
    * Find a player's king
    */
-  findKing(color: 'w' | 'b'): Position | null {
+  findKing(color: Color): Position | null {
     const char = color === 'w' ? 'K' : 'k'
 
     for (let i = 0; i < positions.length; i++) {

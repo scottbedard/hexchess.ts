@@ -3,7 +3,9 @@ export {
 } from './hexchess'
 
 export {
+  type Board,
   type Color,
-  type Direction,
+  type Move,
+  type Piece,
   type Position
 } from './types'
