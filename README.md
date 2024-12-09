@@ -21,6 +21,12 @@ Install this package via npm
 npm install @bedard/hexchess
 ```
 
+A bundled version is also available, with the library exposed as `Hexchess`.
+
+```html
+<script src="https://unpkg.com/@bedard/hexchess.ts"></script>
+```
+
 ## Basic usage
 
 Instantiate a `Hexchess` class with an initial [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation). Note that since castling is not permitted, that section of the FEN is omitted. If no FEN is provided, the board will be empty.
