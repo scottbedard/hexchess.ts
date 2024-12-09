@@ -17,14 +17,17 @@ jobs:
           registry-url: https://registry.npmjs.org
           node-version: 22
 
-      - name: Install dependencies
-        run: npm install
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
+          version: 9
 
       - name: Vitest
-        run: npm test
+        run: pnpm test
 
       - name: Build
-        run: npm build
+        run: pnpm build
 
       - name: Release
         env:
