@@ -19,7 +19,7 @@
   "homepage": "https://github.com/scottbedard/hexchess.ts#readme",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
-  "name": "@bedard/hexchess.ts",
+  "name": "@bedard/hexchess",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scottbedard/hexchess.ts.git"
