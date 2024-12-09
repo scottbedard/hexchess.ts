@@ -3,6 +3,7 @@
 [![Build](https://github.com/scottbedard/hexchess.ts/actions/workflows/build.yml/badge.svg)](https://github.com/scottbedard/hexchess.ts/actions/workflows/build.yml)
 [![Coverage](https://codecov.io/gh/scottbedard/hexchess.ts/graph/badge.svg?token=VW6bvs4YU5)](https://codecov.io/gh/scottbedard/hexchess.ts)
 [![NPM](https://img.shields.io/npm/v/%40bedard%2Fhexchess)](https://www.npmjs.com/package/@bedard/hexchess)
+[![Bundlephobia](https://img.shields.io/bundlephobia/minzip/%40bedard%2Fhexchess?label=size)](https://bundlephobia.com/package/@bedard/hexchess)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/scottbedard/hexchess.ts/blob/main/LICENSE)
 
 A TypeScript library for [Gliński's hexagonal chess](https://en.wikipedia.org/wiki/Hexagonal_chess#Gli%C5%84ski's_hexagonal_chess), and the brain of [hexchess.club](https://hexchess.club).
