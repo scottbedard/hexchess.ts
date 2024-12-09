@@ -1,15 +1,7 @@
 {
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "name": "@bedard/hexchess.ts",
-  "type": "module",
-  "scripts": {
-    "build": "tsc --project ./tsconfig.json --emitDeclarationOnly && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "lint:fix": "eslint --flag unstable_ts_config --fix",
-    "lint": "eslint --flag unstable_ts_config",
-    "test:coverage": "vitest --coverage",
-    "test": "vitest",
-    "types": "tsc --project ./tsconfig.json --noEmit"
+  "author": "Scott Bedard",
+  "bugs": {
+    "url": "https://github.com/scottbedard/hexchess.ts/issues"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
@@ -24,6 +16,23 @@
     "typescript-eslint": "^8.17.0",
     "vitest": "^2.1.8"
   },
+  "homepage": "https://github.com/scottbedard/hexchess.ts#readme",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "name": "@bedard/hexchess.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottbedard/hexchess.ts.git"
+  },
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json --emitDeclarationOnly && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "lint:fix": "eslint --flag unstable_ts_config --fix",
+    "lint": "eslint --flag unstable_ts_config",
+    "test:coverage": "vitest --coverage",
+    "test": "vitest",
+    "types": "tsc --project ./tsconfig.json --noEmit"
+  },
+  "type": "module",
   "unpkg": "dist/index.bundle.js",
   "version": "1.0.0-beta.9"
 }
