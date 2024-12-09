@@ -34,5 +34,5 @@
   },
   "type": "module",
   "unpkg": "dist/index.bundle.js",
-  "version": "1.0.0-beta.9"
+  "version": "1.0.0-beta.10"
 }
