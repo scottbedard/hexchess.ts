@@ -125,38 +125,38 @@ export function parseBoard(source: string): Board {
   let normalized = ''
 
   for (let i = 0; i < source.length; i++) {
-  	const current = source[i]
+    const current = source[i]
 
     if (current === '1') {
       const next = source[i + 1]
-  
+
       if (next === '0') {
-        i++;
-        normalized += '__________';
+        i++
+        normalized += '__________'
       } else if (next === '1') {
-        i++;
-        normalized += '___________';
+        i++
+        normalized += '___________'
       } else {
-        normalized += '_';
+        normalized += '_'
       }
     } else if (current === '2') {
-      normalized += '__';
+      normalized += '__'
     } else if (current === '3') {
-      normalized += '___';
+      normalized += '___'
     } else if (current === '4') {
-      normalized += '____';
+      normalized += '____'
     } else if (current === '5') {
-      normalized += '_____';
+      normalized += '_____'
     } else if (current === '6') {
-      normalized += '______';
+      normalized += '______'
     } else if (current === '7') {
-      normalized += '_______';
+      normalized += '_______'
     } else if (current === '8') {
-      normalized += '________';
+      normalized += '________'
     } else if (current === '9') {
-      normalized += '_________';
+      normalized += '_________'
     } else if (current !== '/') {
-      normalized += source[i];
+      normalized += source[i]
     }
   }
 
