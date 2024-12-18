@@ -122,26 +122,14 @@ export function isPosition(source: string): source is Position {
 export function parseBoard(source: string): Board {
   const board = createBoard()
 
-  // const normalized = source
-  //   .replaceAll('11', '___________')
-  //   .replaceAll('10', '__________')
-  //   .replaceAll('9', '_________')
-  //   .replaceAll('8', '________')
-  //   .replaceAll('7', '_______')
-  //   .replaceAll('6', '______')
-  //   .replaceAll('5', '_____')
-  //   .replaceAll('4', '____')
-  //   .replaceAll('3', '___')
-  //   .replaceAll('2', '__')
-  //   .replaceAll('1', '_')
-  //   .replaceAll('/', '')
-
   let normalized = ''
 
   for (let i = 0; i < source.length; i++) {
   	const current = source[i]
+
     if (current === '1') {
       const next = source[i + 1]
+  
       if (next === '0') {
         i++;
         normalized += '__________';
