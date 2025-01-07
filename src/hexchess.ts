@@ -322,10 +322,6 @@ export class Hexchess {
   movesUnsafe(position: Position): Move[] {
     const piece = this.board[position]
 
-    if (!piece) {
-      return []
-    }
-
     switch (piece) {
       case 'b': return getBishopMoves(this, position, 'b')
       case 'B': return getBishopMoves(this, position, 'w')
@@ -340,6 +336,8 @@ export class Hexchess {
       case 'r': return getRookMoves(this, position, 'b')
       case 'R': return getRookMoves(this, position, 'w')
     }
+
+    return []
   }
 
   /**
