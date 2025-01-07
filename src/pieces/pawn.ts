@@ -62,7 +62,7 @@ export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): 
   const output: Move[] = []
 
   for (let i = 0; i < moves.length; i++) {
-    const move = moves[i]!
+    const move = moves[i]
 
     if (promotionPositions[color].includes(move.to)) {
       output.push(

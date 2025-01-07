@@ -122,19 +122,43 @@ export function isPosition(source: string): source is Position {
 export function parseBoard(source: string): Board {
   const board = createBoard()
 
-  const normalized = source
-    .replaceAll('11', '___________')
-    .replaceAll('10', '__________')
-    .replaceAll('9', '_________')
-    .replaceAll('8', '________')
-    .replaceAll('7', '_______')
-    .replaceAll('6', '______')
-    .replaceAll('5', '_____')
-    .replaceAll('4', '____')
-    .replaceAll('3', '___')
-    .replaceAll('2', '__')
-    .replaceAll('1', '_')
-    .replaceAll('/', '')
+  let normalized = ''
+
+  for (let i = 0; i < source.length; i++) {
+    const current = source[i]
+
+    if (current === '1') {
+      const next = source[i + 1]
+
+      if (next === '0') {
+        i++
+        normalized += '__________'
+      } else if (next === '1') {
+        i++
+        normalized += '___________'
+      } else {
+        normalized += '_'
+      }
+    } else if (current === '2') {
+      normalized += '__'
+    } else if (current === '3') {
+      normalized += '___'
+    } else if (current === '4') {
+      normalized += '____'
+    } else if (current === '5') {
+      normalized += '_____'
+    } else if (current === '6') {
+      normalized += '______'
+    } else if (current === '7') {
+      normalized += '_______'
+    } else if (current === '8') {
+      normalized += '________'
+    } else if (current === '9') {
+      normalized += '_________'
+    } else if (current !== '/') {
+      normalized += source[i]
+    }
+  }
 
   if (normalized.length !== positions.length) {
     throw new Error('Parse board failed: invalid length')
