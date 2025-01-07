@@ -326,20 +326,20 @@ export class Hexchess {
       return []
     }
 
-    return {
-      b: getBishopMoves(this, position, 'b'),
-      B: getBishopMoves(this, position, 'w'),
-      k: getKingMoves(this, position, 'b'),
-      K: getKingMoves(this, position, 'w'),
-      n: getKnightMoves(this, position, 'b'),
-      N: getKnightMoves(this, position, 'w'),
-      p: getPawnMoves(this, position, 'b'),
-      P: getPawnMoves(this, position, 'w'),
-      q: getQueenMoves(this, position, 'b'),
-      Q: getQueenMoves(this, position, 'w'),
-      r: getRookMoves(this, position, 'b'),
-      R: getRookMoves(this, position, 'w'),
-    }[piece]
+    switch (piece) {
+      case 'b': return getBishopMoves(this, position, 'b')
+      case 'B': return getBishopMoves(this, position, 'w')
+      case 'k': return getKingMoves(this, position, 'b')
+      case 'K': return getKingMoves(this, position, 'w')
+      case 'n': return getKnightMoves(this, position, 'b')
+      case 'N': return getKnightMoves(this, position, 'w')
+      case 'p': return getPawnMoves(this, position, 'b')
+      case 'P': return getPawnMoves(this, position, 'w')
+      case 'q': return getQueenMoves(this, position, 'b')
+      case 'Q': return getQueenMoves(this, position, 'w')
+      case 'r': return getRookMoves(this, position, 'b')
+      case 'R': return getRookMoves(this, position, 'w')
+    }
   }
 
   /**
