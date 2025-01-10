@@ -60,3 +60,15 @@ test('black knight', () => {
     { from: 'f6', to: 'e8' }, // e8 is hostile
   ])
 })
+
+test('near edge of board', () => {
+  const hexchess = new Hexchess('N/3/5/7/9/11/11/11/11/11/11')
+  const moves = hexchess.moves('f11')
+
+  expect(moves).toEqual([
+    { from: 'f11', to: 'h8' },
+    { from: 'f11', to: 'g8' },
+    { from: 'f11', to: 'e8' },
+    { from: 'f11', to: 'd8' },
+  ])
+})
