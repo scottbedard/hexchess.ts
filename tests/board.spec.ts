@@ -1,4 +1,4 @@
-import { createBoard, isPosition, parseBoard, parseMove, stringifyBoard, walk } from '@/board'
+import { createBoard, isPosition, parseBoard, parseMove, stringifyBoard, stringifyMove, walk } from '@/board'
 import { describe, expect, test } from 'vitest'
 import { Hexchess } from '@/index'
 import { emptyPosition, initialPosition, positions } from '@/constants'
@@ -301,6 +301,16 @@ describe('stringifyBoard', () => {
     const hexchess = Hexchess.init()
 
     expect(stringifyBoard(hexchess.board)).toBe(initialPosition.split(' ').shift())
+  })
+})
+
+describe('stringifyMove', () => {
+  test('without promotion', () => {
+    expect(stringifyMove({ from: 'a1', to: 'b2' })).toBe('a1b2')
+  })
+
+  test('with promotion', () => {
+    expect(stringifyMove({ from: 'f10', to: 'f11', promotion: 'q' })).toBe('f10f11q')
   })
 })
 

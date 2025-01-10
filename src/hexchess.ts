@@ -4,7 +4,8 @@ import {
   isPosition,
   parseBoard,
   parseMove,
-  stringifyBoard
+  stringifyBoard,
+  stringifyMove,
 } from './board'
 import { getBishopMoves } from './pieces/bishop'
 import { getKingMoves } from './pieces/king'
@@ -101,11 +102,11 @@ export class Hexchess {
       const piece = clone.board[move.from]
 
       if (!piece) {
-        throw new Error(`invalid move at index ${i}: ${sequence[i]}`)
+        throw new Error(`invalid move at index ${i}: ${sequence[i]}, piece not found`)
       }
 
       if (getColor(piece) !== clone.turn) {
-        throw new Error(`invalid move at index ${i}: out of turn}`)
+        throw new Error(`invalid move at index ${i}: ${sequence[i]}, out of turn}`)
       }
 
       clone.applyUnsafe(move)
@@ -128,7 +129,7 @@ export class Hexchess {
     const piece = this.board[move.from]
 
     if (!piece) {
-      return
+      throw new Error(`invalid move: ${stringifyMove(move)}, piece not found`)
     }
 
     // update halfmove
@@ -157,7 +158,7 @@ export class Hexchess {
       } else if (piece === 'P' && promotionPositions.w.includes(move.to)) {
         this.board[move.to] = move.promotion.toUpperCase() as Piece
       } else {
-        throw new Error(`illegal promotion: ${move.from}${move.to}${move.promotion}`)
+        throw new Error(`illegal promotion: ${stringifyMove(move)}`)
       }
     } else {
       this.board[move.to] = piece

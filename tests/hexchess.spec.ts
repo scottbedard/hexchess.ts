@@ -13,6 +13,10 @@ describe('initialization', () => {
     expect(hexchess.fullmove).toBe(1)
   })
 
+  test('invalid en passant', () => {
+    expect(() => new Hexchess('1/3/5/7/9/11/11/11/11/11/11 w x 0 1')).toThrow()
+  })
+
   test('board only', () => {
     const hexchess = new Hexchess('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1')
 
@@ -386,6 +390,12 @@ describe('apply', () => {
     const hexchess = new Hexchess('1/3/5/7/p8/Q10/11/11/11/11/11 b - 0 1')
     expect(() => hexchess.apply('b7a6q')).toThrowError()
   })
+
+  test('out of turn', () => {
+    const hexchess = Hexchess.init()
+
+    expect(() => hexchess.apply('e7e6')).toThrow()
+  })
 })
 
 describe('applyUnsafe', () => {
@@ -395,6 +405,12 @@ describe('applyUnsafe', () => {
     hexchess.applyUnsafe({ from: 'f5', to: 'f7' })
 
     expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppPpppp/11/11/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b f6 0 1')
+  })
+
+  test('piece not found', () => {
+    const hexchess = new Hexchess()
+
+    expect(() => hexchess.applyUnsafe({ from: 'a1', to: 'a2' })).toThrow()
   })
 })
 
@@ -514,6 +530,12 @@ describe('isThreatened', () => {
     hexchess.turn = 'w'
     expect(hexchess.isThreatened('f6')).toBe(true)
   })
+
+  test('unoccupied position is not threatened', () => {
+    const hexchess = new Hexchess()
+
+    expect(hexchess.isThreatened('f6')).toBe(false)
+  })
 })
 
 describe('moves', () => {
@@ -548,6 +570,12 @@ describe('movesUnsafe', () => {
       { from: 'f6', to: 'e6' },
       { from: 'f6', to: 'e7' },
     ])
+  })
+
+  test('unoccupied position', () => {
+    const hexchess = new Hexchess()
+
+    expect(hexchess.movesUnsafe('a1')).toEqual([])
   })
 })
 

@@ -309,6 +309,13 @@ export function stringifyBoard(board: Board): string {
 }
 
 /**
+ * Stringify move
+ */
+export function stringifyMove(move: Move): string {
+  return `${move.from}${move.to}${move.promotion || ''}`
+}
+
+/**
  * Traverse the board in a given direction
  */
 export function walk(
