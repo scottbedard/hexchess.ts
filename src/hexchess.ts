@@ -5,7 +5,7 @@ import {
   parseBoard,
   parseMove,
   stringifyBoard,
-  stringifyMove,
+  stringifyMove
 } from './board'
 import { getBishopMoves } from './pieces/bishop'
 import { getKingMoves } from './pieces/king'
