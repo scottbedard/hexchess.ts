@@ -33,6 +33,7 @@
     "types": "tsc --project ./tsconfig.json --noEmit"
   },
   "type": "module",
+  "types": "dist/index.d.ts",
   "unpkg": "dist/index.bundle.js",
   "version": "1.0.0"
 }
