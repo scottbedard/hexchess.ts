@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Include type definitions in published package
+
 ## 1.0.0
 
 Stable release of library, now in use on [https://hexchess.club](https://hexchess.club).
