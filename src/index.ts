@@ -1,4 +1,10 @@
 export {
+  emptyPosition,
+  initialPosition,
+  positions
+} from './constants'
+
+export {
   Hexchess
 } from './hexchess'
 
