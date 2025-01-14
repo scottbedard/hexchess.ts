@@ -202,6 +202,17 @@ export class Hexchess {
   }
 
   /**
+   * Clear all data from the instance
+   */
+  clear() {
+    this.enPassant = null
+    this.turn = 'w'
+    this.halfmove = 0
+    this.fullmove = 1
+    Object.assign(this.board, createBoard())
+  }
+
+  /**
    * Clone hexchess instance
    */
   clone(): Hexchess {
@@ -261,6 +272,13 @@ export class Hexchess {
       .color(this.turn === 'b' ? 'w' : 'b')
       .flatMap(position => this.moves(position))
       .some(move => move.to === king)
+  }
+
+  /**
+   * Create hexchess in initial position
+   */
+  static init() {
+    return new Hexchess(initialPosition)
   }
 
   /**
@@ -342,10 +360,12 @@ export class Hexchess {
   }
 
   /**
-   * Create hexchess in initial position
+   * Reset the game to initial position
    */
-  static init() {
-    return new Hexchess(initialPosition)
+  reset() {
+    this.clear()
+
+    Object.assign(this.board, parseBoard('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1'))
   }
 
   /**

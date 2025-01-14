@@ -414,6 +414,20 @@ describe('applyUnsafe', () => {
   })
 })
 
+describe('clear', () => {
+  test('creates empty board', () => {
+    const hexchess = Hexchess.init()
+    hexchess.turn = 'b'
+    hexchess.enPassant = 'b2'
+    hexchess.halfmove = 1
+    hexchess.fullmove = 2
+
+    hexchess.clear()
+
+    expect(hexchess.toString()).toEqual(emptyPosition)
+  })
+})
+
 test('color', () => {
   const hexchess = new Hexchess('1/3/5/7/9/11/11/p9P/11/11/11 w - 0 1')
 
@@ -576,6 +590,20 @@ describe('movesUnsafe', () => {
     const hexchess = new Hexchess()
 
     expect(hexchess.movesUnsafe('a1')).toEqual([])
+  })
+})
+
+describe('reset', () => {
+  test('creates reset board', () => {
+    const hexchess = new Hexchess()
+    hexchess.turn = 'b'
+    hexchess.enPassant = 'b2'
+    hexchess.halfmove = 1
+    hexchess.fullmove = 2
+
+    hexchess.reset()
+
+    expect(hexchess.toString()).toEqual(initialPosition)
   })
 })
 

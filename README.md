@@ -62,6 +62,18 @@ hexchess.applyUnsafe({ from: 'f5', to: 'f7' })
 // 'b/qbk/n1b1n/r5r/ppppPpppp/11/11/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b f6 0 1'
 ```
 
+#### `clear`
+
+Remove all pieces from the board, and set all other state to their initial values.
+
+```ts
+const hexchess = Hexchess.init()
+
+hexchess.clear()
+
+hexchess.toString() // '1/3/5/7/9/11/11/11/11/11/11 w - 0 1'
+```
+
 #### `color`
 
 Get all positions occupied by a color.
@@ -150,6 +162,18 @@ Get array of moves, including ones that result in self-check.
 const hexchess = new Hexchess('1/3/5/7/4r4/5K5/11/11/11/11/11 w - 0 1')
 
 hexchess.movesUnsafe() // [{ from: 'f6', to: 'f7' }, { from: 'f6', to: 'g7' }, ...]
+```
+
+#### `reset`
+
+Reset the board to it's starting position, and set all other state to their initial values.
+
+```ts
+const hexchess = new Hexchess()
+
+hexchess.reset()
+
+hexchess.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w - 0 1'
 ```
 
 #### `toString`
