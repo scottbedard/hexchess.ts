@@ -16,17 +16,21 @@ A TypeScript library for [Gliński's hexagonal chess](https://en.wikipedia.org/w
 
 ## Installation
 
-Install this package via npm
+Install this package via NPM.
 
 ```
 npm install @bedard/hexchess
 ```
 
-A bundled version is also available, with the library exposed as `Hexchess`.
+[View package &rarr;](https://www.npmjs.com/package/@bedard/hexchess)
+
+A bundled version is also available via CDN, with the library exposed globally as `Hexchess`.
 
 ```html
-<script src="https://unpkg.com/@bedard/hexchess.ts"></script>
+<script src="https://unpkg.com/@bedard/hexchess"></script>
 ```
+
+[View source &rarr;](https://unpkg.com/@bedard/hexchess)
 
 ## Basic usage
 
