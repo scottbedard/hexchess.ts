@@ -729,7 +729,7 @@ describe('walk', () => {
   test('capture enemy piece', () => {
     const eleven = walk('f1', 11, parseBoard('1/3/5/7/9/11/11/11/11/4P1p4/5B5'), 'w')
     const one = walk('f1', 1, parseBoard('1/3/5/7/9/11/11/11/11/4P1p4/5B5'), 'w')
-    
+
     expect(eleven).toEqual([])
     expect(one).toEqual(['g2'])
   })
