@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Fix walk continuing beyond capture
+
 ## 1.1.0
 
 - Add `clear` method to remove all state from board
