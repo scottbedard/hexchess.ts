@@ -331,7 +331,13 @@ export function walk(
   while(next) {
     path.push(next)
 
+    const occupied = board[next] !== null
+
     next = step(next, direction, board, color)
+
+    if (occupied) {
+      break
+    }
   }
 
   return path

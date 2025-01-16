@@ -727,8 +727,10 @@ describe('walk', () => {
   })
 
   test('capture enemy piece', () => {
-    const path = walk('f6', 0, parseBoard('K/3/5/7/9/11/11/11/11/11/11'), 'b')
-
-    expect(path).toEqual(['f7', 'f8', 'f9', 'f10', 'f11']) // <- f11 is the white king
+    const eleven = walk('f1', 11, parseBoard('1/3/5/7/9/11/11/11/11/4P1p4/5B5'), 'w')
+    const one = walk('f1', 1, parseBoard('1/3/5/7/9/11/11/11/11/4P1p4/5B5'), 'w')
+    
+    expect(eleven).toEqual([])
+    expect(one).toEqual(['g2'])
   })
 })
