@@ -188,6 +188,7 @@ export class Hexchess {
       else if (move.from === 'h7' && move.to === 'h5') this.enPassant = 'h6'
       else if (move.from === 'i7' && move.to === 'i5') this.enPassant = 'i6'
       else if (move.from === 'k7' && move.to === 'k5') this.enPassant = 'k6'
+      else { this.enPassant = null }
     } else if (piece === 'P') {
       if (move.from === 'b1', move.to === 'b3') this.enPassant = 'b2'
       else if (move.from === 'c2', move.to === 'c4') this.enPassant = 'c3'
@@ -198,6 +199,7 @@ export class Hexchess {
       else if (move.from === 'h3', move.to === 'h5') this.enPassant = 'h4'
       else if (move.from === 'i2', move.to === 'i4') this.enPassant = 'i3'
       else if (move.from === 'k1', move.to === 'k3') this.enPassant = 'k2'
+      else { this.enPassant = null }
     }
   }
 

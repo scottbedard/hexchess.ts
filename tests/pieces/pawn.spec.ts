@@ -108,7 +108,7 @@ describe('standard capture', () => {
     ])
   })
 
-  test('white (blocked friendly', () => {
+  test('white (blocked friendly)', () => {
     const hexchess = new Hexchess('1/3/5/7/9/4PPP4/11/11/11/11/11 w - 0 1')
 
     expect(hexchess.moves('f6')).toEqual([{ from: 'f6', to: 'f7' }])
@@ -150,6 +150,18 @@ describe('en passant', () => {
       { from: 'g6', to: 'g5' },
       // f6 is out of turn
     ])
+  })
+
+  test('en passant unsets on next move', () => {
+    const hexchess = new Hexchess('1/3/5/7/8p/11/11/11/11/11/1P9 w - 0 1')
+
+    hexchess.apply('b1b3')
+
+    expect(hexchess.enPassant).toEqual('b2')
+
+    hexchess.apply('k7k6')
+
+    expect(hexchess.enPassant).toEqual(null)
   })
 })
 
