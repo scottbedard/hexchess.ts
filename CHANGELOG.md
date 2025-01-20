@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Fix stale en passant values
+
 ## 1.1.1
 
 - Fix walk continuing beyond capture
