@@ -1,6 +1,6 @@
 import { Hexchess } from './hexchess'
 
-export function run(args: string[]): string | undefined {
+export default function run(args: string[]): string | undefined {
   //
   // home screen
   //
@@ -75,9 +75,7 @@ Commands:
       throw new Error('parse command requires <fen> parameter')
     }
 
-    const hexchess = new Hexchess(fen)
-
-    return JSON.stringify(hexchess)
+    return JSON.stringify(new Hexchess(fen))
   }
 
   //
