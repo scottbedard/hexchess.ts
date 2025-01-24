@@ -28,7 +28,7 @@ export class Hexchess {
   /**
    * Position eligible for en passant capture.
    */
-  enPassant: Position | null = null
+  ep: Position | null = null
 
   /**
    * Current turn color.
@@ -56,7 +56,7 @@ export class Hexchess {
     const [
       board,
       turn = 'w',
-      enPassant = '-',
+      ep = '-',
       halfmove = '0',
       fullmove = '1',
     ] = fen
@@ -72,10 +72,10 @@ export class Hexchess {
       throw new Error('Parse fen failed: invalid turn color')
     }
 
-    if (enPassant === '-') {
-      this.enPassant = null
-    } else if (isPosition(enPassant)) {
-      this.enPassant = enPassant
+    if (ep === '-') {
+      this.ep = null
+    } else if (isPosition(ep)) {
+      this.ep = ep
     } else {
       throw new Error('Parse fen failed: invalid en passant')
     }
@@ -113,7 +113,7 @@ export class Hexchess {
     }
 
     this.turn = clone.turn
-    this.enPassant = clone.enPassant
+    this.ep = clone.ep
     this.halfmove = clone.halfmove
     this.fullmove = clone.fullmove
 
@@ -165,7 +165,7 @@ export class Hexchess {
     }
 
     // clear en passant capture
-    if (move.to === this.enPassant) {
+    if (move.to === this.ep) {
       if (piece === 'p' || piece === 'P') {
         const sibling = color === 'b'
           ? graph[move.to][0]
@@ -179,27 +179,27 @@ export class Hexchess {
 
     // set en passant
     if (piece === 'p') {
-      if (move.from === 'b7' && move.to === 'b5') this.enPassant = 'b6'
-      else if (move.from === 'c7' && move.to === 'c5') this.enPassant = 'c6'
-      else if (move.from === 'd7' && move.to === 'd5') this.enPassant = 'd6'
-      else if (move.from === 'e7' && move.to === 'e5') this.enPassant = 'e6'
-      else if (move.from === 'f7' && move.to === 'f5') this.enPassant = 'f6'
-      else if (move.from === 'g7' && move.to === 'g5') this.enPassant = 'g6'
-      else if (move.from === 'h7' && move.to === 'h5') this.enPassant = 'h6'
-      else if (move.from === 'i7' && move.to === 'i5') this.enPassant = 'i6'
-      else if (move.from === 'k7' && move.to === 'k5') this.enPassant = 'k6'
-      else this.enPassant = null
+      if (move.from === 'b7' && move.to === 'b5') this.ep = 'b6'
+      else if (move.from === 'c7' && move.to === 'c5') this.ep = 'c6'
+      else if (move.from === 'd7' && move.to === 'd5') this.ep = 'd6'
+      else if (move.from === 'e7' && move.to === 'e5') this.ep = 'e6'
+      else if (move.from === 'f7' && move.to === 'f5') this.ep = 'f6'
+      else if (move.from === 'g7' && move.to === 'g5') this.ep = 'g6'
+      else if (move.from === 'h7' && move.to === 'h5') this.ep = 'h6'
+      else if (move.from === 'i7' && move.to === 'i5') this.ep = 'i6'
+      else if (move.from === 'k7' && move.to === 'k5') this.ep = 'k6'
+      else this.ep = null
     } else if (piece === 'P') {
-      if (move.from === 'b1', move.to === 'b3') this.enPassant = 'b2'
-      else if (move.from === 'c2', move.to === 'c4') this.enPassant = 'c3'
-      else if (move.from === 'd3', move.to === 'd5') this.enPassant = 'd4'
-      else if (move.from === 'e4', move.to === 'e6') this.enPassant = 'e5'
-      else if (move.from === 'f5', move.to === 'f7') this.enPassant = 'f6'
-      else if (move.from === 'g4', move.to === 'g6') this.enPassant = 'g5'
-      else if (move.from === 'h3', move.to === 'h5') this.enPassant = 'h4'
-      else if (move.from === 'i2', move.to === 'i4') this.enPassant = 'i3'
-      else if (move.from === 'k1', move.to === 'k3') this.enPassant = 'k2'
-      else this.enPassant = null
+      if (move.from === 'b1', move.to === 'b3') this.ep = 'b2'
+      else if (move.from === 'c2', move.to === 'c4') this.ep = 'c3'
+      else if (move.from === 'd3', move.to === 'd5') this.ep = 'd4'
+      else if (move.from === 'e4', move.to === 'e6') this.ep = 'e5'
+      else if (move.from === 'f5', move.to === 'f7') this.ep = 'f6'
+      else if (move.from === 'g4', move.to === 'g6') this.ep = 'g5'
+      else if (move.from === 'h3', move.to === 'h5') this.ep = 'h4'
+      else if (move.from === 'i2', move.to === 'i4') this.ep = 'i3'
+      else if (move.from === 'k1', move.to === 'k3') this.ep = 'k2'
+      else this.ep = null
     }
   }
 
@@ -207,7 +207,7 @@ export class Hexchess {
    * Clear all data from the instance
    */
   clear() {
-    this.enPassant = null
+    this.ep = null
     this.turn = 'w'
     this.halfmove = 0
     this.fullmove = 1
@@ -221,7 +221,7 @@ export class Hexchess {
     const hexchess = new Hexchess()
 
     hexchess.board = { ...this.board }
-    hexchess.enPassant = this.enPassant
+    hexchess.ep = this.ep
     hexchess.turn = this.turn
     hexchess.halfmove = this.halfmove
     hexchess.fullmove = this.fullmove
@@ -374,6 +374,6 @@ export class Hexchess {
    * Convert to string
    */
   toString(): string {
-    return `${stringifyBoard(this.board)} ${this.turn} ${this.enPassant ?? '-'} ${this.halfmove} ${this.fullmove}`
+    return `${stringifyBoard(this.board)} ${this.turn} ${this.ep ?? '-'} ${this.halfmove} ${this.fullmove}`
   }
 }

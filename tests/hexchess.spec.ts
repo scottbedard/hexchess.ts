@@ -7,7 +7,7 @@ describe('initialization', () => {
   test('empty', () => {
     const hexchess = new Hexchess
     expect(hexchess.board).toEqual(createBoard())
-    expect(hexchess.enPassant).toBeNull()
+    expect(hexchess.ep).toBeNull()
     expect(hexchess.turn).toBe('w')
     expect(hexchess.halfmove).toBe(0)
     expect(hexchess.fullmove).toBe(1)
@@ -115,7 +115,7 @@ describe('initialization', () => {
     })
 
     expect(hexchess.turn).toBe('w')
-    expect(hexchess.enPassant).toBeNull()
+    expect(hexchess.ep).toBeNull()
     expect(hexchess.halfmove).toBe(0)
     expect(hexchess.fullmove).toBe(1)
   })
@@ -169,77 +169,77 @@ describe('apply', () => {
   test('black sets en passant', () => {
     const b = new Hexchess('1/3/5/7/p8/11/11/11/11/11/11 b - 0 1')
     b.apply('b7b5')
-    expect(b.enPassant).toBe('b6')
+    expect(b.ep).toBe('b6')
 
     const c = new Hexchess('1/3/5/7/1p7/11/11/11/11/11/11 b - 0 1')
     c.apply('c7c5')
-    expect(c.enPassant).toBe('c6')
+    expect(c.ep).toBe('c6')
 
     const d = new Hexchess('1/3/5/7/2p6/11/11/11/11/11/11 b - 0 1')
     d.apply('d7d5')
-    expect(d.enPassant).toBe('d6')
+    expect(d.ep).toBe('d6')
 
     const e = new Hexchess('1/3/5/7/3p5/11/11/11/11/11/11 b - 0 1')
     e.apply('e7e5')
-    expect(e.enPassant).toBe('e6')
+    expect(e.ep).toBe('e6')
 
     const f = new Hexchess('1/3/5/7/4p4/11/11/11/11/11/11 b - 0 1')
     f.apply('f7f5')
-    expect(f.enPassant).toBe('f6')
+    expect(f.ep).toBe('f6')
 
     const g = new Hexchess('1/3/5/7/5p3/11/11/11/11/11/11 b - 0 1')
     g.apply('g7g5')
-    expect(g.enPassant).toBe('g6')
+    expect(g.ep).toBe('g6')
 
     const h = new Hexchess('1/3/5/7/6p2/11/11/11/11/11/11 b - 0 1')
     h.apply('h7h5')
-    expect(h.enPassant).toBe('h6')
+    expect(h.ep).toBe('h6')
 
     const i = new Hexchess('1/3/5/7/7p1/11/11/11/11/11/11 b - 0 1')
     i.apply('i7i5')
-    expect(i.enPassant).toBe('i6')
+    expect(i.ep).toBe('i6')
 
     const k = new Hexchess('1/3/5/7/8p/11/11/11/11/11/11 b - 0 1')
     k.apply('k7k5')
-    expect(k.enPassant).toBe('k6')
+    expect(k.ep).toBe('k6')
   })
 
   test('white sets en passant', () => {
     const b = new Hexchess('1/3/5/7/9/11/11/11/11/11/1P9 w - 0 1')
     b.apply('b1b3')
-    expect(b.enPassant).toBe('b2')
+    expect(b.ep).toBe('b2')
 
     const c = new Hexchess('1/3/5/7/9/11/11/11/11/2P8/11 w - 0 1')
     c.apply('c2c4')
-    expect(c.enPassant).toBe('c3')
+    expect(c.ep).toBe('c3')
 
     const d = new Hexchess('1/3/5/7/9/11/11/11/3P7/11/11 w - 0 1')
     d.apply('d3d5')
-    expect(d.enPassant).toBe('d4')
+    expect(d.ep).toBe('d4')
 
     const e = new Hexchess('1/3/5/7/9/11/11/4P6/11/11/11 w - 0 1')
     e.apply('e4e6')
-    expect(e.enPassant).toBe('e5')
+    expect(e.ep).toBe('e5')
 
     const f = new Hexchess('1/3/5/7/9/11/5P5/11/11/11/11 w - 0 1')
     f.apply('f5f7')
-    expect(f.enPassant).toBe('f6')
+    expect(f.ep).toBe('f6')
 
     const g = new Hexchess('1/3/5/7/9/11/11/6P4/11/11/11 w - 0 1')
     g.apply('g4g6')
-    expect(g.enPassant).toBe('g5')
+    expect(g.ep).toBe('g5')
 
     const h = new Hexchess('1/3/5/7/9/11/11/11/7P3/11/11 w - 0 1')
     h.apply('h3h5')
-    expect(h.enPassant).toBe('h4')
+    expect(h.ep).toBe('h4')
 
     const i = new Hexchess('1/3/5/7/9/11/11/11/11/8P2/11 w - 0 1')
     i.apply('i2i4')
-    expect(i.enPassant).toBe('i3')
+    expect(i.ep).toBe('i3')
 
     const k = new Hexchess('1/3/5/7/9/11/11/11/11/11/9P1 w - 0 1')
     k.apply('k1k3')
-    expect(k.enPassant).toBe('k2')
+    expect(k.ep).toBe('k2')
   })
 
   test('white clears en passant (starboard)', () => {
@@ -247,7 +247,7 @@ describe('apply', () => {
     hexchess.board.f6 = 'P'
     hexchess.board.g5 = 'p'
     hexchess.turn = 'w'
-    hexchess.enPassant = 'g6'
+    hexchess.ep = 'g6'
 
     expect(hexchess.board.g5).toBe('p')
 
@@ -261,7 +261,7 @@ describe('apply', () => {
     hexchess.board.e5 = 'p'
     hexchess.board.f6 = 'P'
     hexchess.turn = 'w'
-    hexchess.enPassant = 'e6'
+    hexchess.ep = 'e6'
 
     expect(hexchess.board.e5).toBe('p')
 
@@ -275,7 +275,7 @@ describe('apply', () => {
     hexchess.board.f6 = 'p'
     hexchess.board.e6 = 'P'
     hexchess.turn = 'b'
-    hexchess.enPassant = 'e5'
+    hexchess.ep = 'e5'
 
     expect(hexchess.board.e6).toBe('P')
 
@@ -289,7 +289,7 @@ describe('apply', () => {
     hexchess.board.f6 = 'p'
     hexchess.board.g6 = 'P'
     hexchess.turn = 'b'
-    hexchess.enPassant = 'g5'
+    hexchess.ep = 'g5'
 
     expect(hexchess.board.g6).toBe('P')
 
@@ -418,7 +418,7 @@ describe('clear', () => {
   test('creates empty board', () => {
     const hexchess = Hexchess.init()
     hexchess.turn = 'b'
-    hexchess.enPassant = 'b2'
+    hexchess.ep = 'b2'
     hexchess.halfmove = 1
     hexchess.fullmove = 2
 
@@ -597,7 +597,7 @@ describe('reset', () => {
   test('creates reset board', () => {
     const hexchess = new Hexchess()
     hexchess.turn = 'b'
-    hexchess.enPassant = 'b2'
+    hexchess.ep = 'b2'
     hexchess.halfmove = 1
     hexchess.fullmove = 2
 

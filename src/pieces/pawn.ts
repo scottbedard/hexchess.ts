@@ -38,7 +38,7 @@ export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): 
 
     if (
       (piece && getColor(piece) !== color) ||
-      (hexchess.enPassant === portside && hexchess.turn === color)
+      (hexchess.ep === portside && hexchess.turn === color)
     ) {
       moves.push({ from, to: portside })
     }
@@ -52,7 +52,7 @@ export function getPawnMoves(hexchess: Hexchess, from: Position, color: Color): 
 
     if (
       (piece && getColor(piece) !== color) ||
-      (hexchess.enPassant === starboard && hexchess.turn === color)
+      (hexchess.ep === starboard && hexchess.turn === color)
     ) {
       moves.push({ from, to: starboard })
     }

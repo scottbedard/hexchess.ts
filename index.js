@@ -45,7 +45,7 @@ program
     const obj = JSON.parse(json)
     const hexchess = new Hexchess()
     hexchess.board = obj.board
-    hexchess.enPassant = obj.enPassant
+    hexchess.ep = obj.ep
     hexchess.turn = obj.turn
     hexchess.halfmove = obj.halfmove
     hexchess.fullmove = obj.fullmove

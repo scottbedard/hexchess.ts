@@ -157,11 +157,11 @@ describe('en passant', () => {
 
     hexchess.apply('b1b3')
 
-    expect(hexchess.enPassant).toEqual('b2')
+    expect(hexchess.ep).toEqual('b2')
 
     hexchess.apply('k7k6')
 
-    expect(hexchess.enPassant).toEqual(null)
+    expect(hexchess.ep).toEqual(null)
   })
 })
 
