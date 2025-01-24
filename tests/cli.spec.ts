@@ -3,6 +3,11 @@ import { Hexchess } from '@/hexchess'
 import { initialPosition } from '@/constants'
 import cli from '@/cli'
 
+test('home screen', () => {
+  const output = cli([])
+  expect(output.includes('@bedard/hexchess')).toBe(true)
+})
+
 describe('apply', () => {
   test('missing params', () => {
     expect(() => cli(['apply', initialPosition])).toThrowError()
