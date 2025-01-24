@@ -1,4 +1,5 @@
 import eslint from '@eslint/js'
+import globals from 'globals'
 import stylistic from '@stylistic/eslint-plugin'
 import tseslint from 'typescript-eslint'
 
@@ -22,6 +23,9 @@ export default tseslint.config(
   // stylistic rules
   {
     languageOptions: {
+      globals: {
+        ...globals.node,
+      },
       parserOptions: {
         parser: tseslint.parser,
       },

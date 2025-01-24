@@ -4,7 +4,7 @@ import { program } from 'commander'
 
 program
   .name('Hexchess')
-  .description(`A TypeScript library for Gliński's hexagonal chess`)
+  .description('A TypeScript library for Gliński\'s hexagonal chess')
 
 program
   .command('apply <fen> <san>')
