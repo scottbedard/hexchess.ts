@@ -34,23 +34,17 @@ A bundled version is also available via CDN, with the library exposed globally a
 
 ## CLI
 
-The following command line interface is available with `node index.js`
+The following command line interface is available via `node index.mjs`
 
 ```
-Usage: Hexchess [options] [command]
-
-A TypeScript library for Gliński's hexagonal chess
-
-Options:
-  -h, --help          display help for command
+@bedard/hexchess
 
 Commands:
-  apply <fen> <san>   Apply legal moves to a position
-  is-checkmate <fen>  Test if the board is in checkmate
-  is-stalemate <fen>  Test if the board is in stalemate
-  parse <fen>         Parse FEN string to JSON
-  stringify <json>    Stringify JSON to FEN string
-  help [command]      display help for command
+  apply <fen> <moves>   Apply legal moves to a position
+  is-checkmate <fen>    Test if the board is in checkmate
+  is-stalemate <fen>    Test if the board is in stalemate
+  parse <fen>           Parse FEN string to JSON
+  stringify <json>      Stringify JSON to FEN string
 ```
 
 ## Basic usage
