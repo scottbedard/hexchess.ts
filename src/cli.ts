@@ -5,14 +5,17 @@ export default function run(args: string[]): string | undefined {
   // home screen
   //
   if (args.length === 0) {
-    return `@bedard/hexchess
+    return `@bedard/hexchess - major.minor.patch
 
 Commands:
   apply <fen> <moves>   Apply legal moves to a position
   is-checkmate <fen>    Test if the board is in checkmate
   is-stalemate <fen>    Test if the board is in stalemate
   parse <fen>           Parse FEN string to JSON
-  stringify <json>      Stringify JSON to FEN string`
+  stringify <json>      Stringify JSON to FEN string
+
+Options:
+  -s, --silent          Disable error logging`
   }
 
   // parse command and parameters

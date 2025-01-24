@@ -1,6 +1,12 @@
 import { defineConfig } from 'rollup'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { minify } from 'rollup-plugin-esbuild-minify'
+import { readFileSync } from 'node:fs'
 import typescript from '@rollup/plugin-typescript'
+
+const pkg = resolve(dirname(fileURLToPath(import.meta.url)), 'package.json')
+const version = JSON.parse(readFileSync(pkg, 'utf-8')).version
 
 export default defineConfig([
   {
@@ -32,6 +38,16 @@ export default defineConfig([
     },
     plugins: [
       typescript(),
+      {
+        name: 'version',
+        transform(code, id) {
+          if (id.endsWith('cli.ts')) {
+            return {
+              code: code.replace(/major\.minor\.patch/, version),
+            }
+          }
+        },
+      },
     ],
   },
 ])
