@@ -8,6 +8,7 @@ export default defineConfig({
   },
   test: {
     coverage: {
+      include: ['src'],
       reporter: ['text', 'json', 'html'],
     },
   },

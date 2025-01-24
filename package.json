@@ -28,8 +28,8 @@
   },
   "scripts": {
     "build": "tsc --project ./tsconfig.json --emitDeclarationOnly && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "lint:fix": "eslint --flag unstable_ts_config --fix",
-    "lint": "eslint --flag unstable_ts_config",
+    "lint:fix": "eslint --fix",
+    "lint": "eslint",
     "test:coverage": "vitest --coverage",
     "test": "vitest",
     "types": "tsc --project ./tsconfig.json --noEmit"
