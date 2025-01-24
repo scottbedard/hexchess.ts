@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- Command line interface added, [see docs here &rarr;](https://github.com/scottbedard/hexchess.ts?tab=readme-ov-file#cli)
+- Renamed `enPassant` property to `ep`
+
 ## 1.1.2
 
 - Fix stale en passant values
