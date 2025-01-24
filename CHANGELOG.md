@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2
+
+- Add `-s, --silent` option to CLI
+
 ## 1.2.1
 
 - Removed third party dependency from CLI

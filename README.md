@@ -45,6 +45,9 @@ Commands:
   is-stalemate <fen>    Test if the board is in stalemate
   parse <fen>           Parse FEN string to JSON
   stringify <json>      Stringify JSON to FEN string
+
+Options:
+  -s, --silent          Disable error logging
 ```
 
 ## Basic usage
