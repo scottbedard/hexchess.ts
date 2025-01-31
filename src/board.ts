@@ -277,35 +277,46 @@ export function step(
  * Stringify board
  */
 export function stringifyBoard(board: Board): string {
-  return positions
-    .map((position, index): string => {
-      const char = board[position] || '_'
+  let blank = 0
+  let current
+  let output = ''
 
-      return (
-        index === 0 ||
-        index === 3 ||
-        index === 8 ||
-        index === 15 ||
-        index === 24 ||
-        index === 35 ||
-        index === 46 ||
-        index === 57 ||
-        index === 68 ||
-        index === 79
-      ) ? `${char}/` : char
-    })
-    .join('')
-    .replaceAll('___________', '11')
-    .replaceAll('__________', '10')
-    .replaceAll('_________', '9')
-    .replaceAll('________', '8')
-    .replaceAll('_______', '7')
-    .replaceAll('______', '6')
-    .replaceAll('_____', '5')
-    .replaceAll('____', '4')
-    .replaceAll('___', '3')
-    .replaceAll('__', '2')
-    .replaceAll('_', '1')
+  for (let i = 0; i < positions.length; i++) {
+    current = board[positions[i]]
+
+    if (current) {
+      if (blank) {
+        output += blank
+        blank = 0
+      }
+
+      output += current
+    } else {
+      blank++
+    }
+
+    if (
+      i === 0 ||
+      i === 3 ||
+      i === 8 ||
+      i === 15 ||
+      i === 24 ||
+      i === 35 ||
+      i === 46 ||
+      i === 57 ||
+      i === 68 ||
+      i === 79
+    ) {
+      output += (blank || '') + '/'
+      blank = 0
+    }
+  }
+
+  if (blank) {
+    output += blank
+  }
+
+  return output
 }
 
 /**
