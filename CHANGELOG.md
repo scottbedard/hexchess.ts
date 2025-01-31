@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.3
+
+- Minor performance and bundle size improvement
+
 ## 1.2.2
 
 - Add `-s, --silent` option to CLI
