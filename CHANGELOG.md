@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+
+- Add `moves` command to CLI
+
 ## 1.2.3
 
 - Minor performance and bundle size improvement
