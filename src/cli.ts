@@ -1,4 +1,5 @@
 import { Hexchess } from './hexchess'
+import { isPosition, stringifyMove } from './board'
 
 export default function run(args: string[]): string | undefined {
   //
@@ -8,11 +9,12 @@ export default function run(args: string[]): string | undefined {
     return `@bedard/hexchess - major.minor.patch
 
 Commands:
-  apply <fen> <moves>   Apply legal moves to a position
-  is-checkmate <fen>    Test if the board is in checkmate
-  is-stalemate <fen>    Test if the board is in stalemate
-  parse <fen>           Parse FEN string to JSON
-  stringify <json>      Stringify JSON to FEN string
+  apply <fen> <moves>     Apply legal moves to a position
+  is-checkmate <fen>      Test if the board is in checkmate
+  is-stalemate <fen>      Test if the board is in stalemate
+  moves <fen> <position>  Get CSV of all legal moves from a position
+  parse <fen>             Parse FEN string to JSON
+  stringify <json>        Stringify JSON to FEN string
 
 Options:
   -s, --silent          Disable error logging`
@@ -66,6 +68,25 @@ Options:
     const hexchess = new Hexchess(fen)
 
     return hexchess.isStalemate() ? 'true' : 'false'
+  }
+
+  //
+  // move
+  //
+  if (command === 'moves') {
+    const [fen, position] = params
+
+    if (typeof fen !== 'string' || typeof position !== 'string') {
+      throw new Error('moves command requires <fen> and <position> parameters')
+    }
+
+    const hexchess = new Hexchess(fen)
+
+    if (!isPosition(position)) {
+      throw new Error('invalid position')
+    }
+
+    return hexchess.moves(position).map(stringifyMove).join(',')
   }
 
   //

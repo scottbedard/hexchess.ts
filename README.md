@@ -40,11 +40,12 @@ The following command line interface is available via `node index.mjs`
 @bedard/hexchess
 
 Commands:
-  apply <fen> <moves>   Apply legal moves to a position
-  is-checkmate <fen>    Test if the board is in checkmate
-  is-stalemate <fen>    Test if the board is in stalemate
-  parse <fen>           Parse FEN string to JSON
-  stringify <json>      Stringify JSON to FEN string
+  apply <fen> <moves>     Apply legal moves to a position
+  is-checkmate <fen>      Test if the board is in checkmate
+  is-stalemate <fen>      Test if the board is in stalemate
+  moves <fen> <position>  Get CSV of all legal moves from a position
+  parse <fen>             Parse FEN string to JSON
+  stringify <json>        Stringify JSON to FEN string
 
 Options:
   -s, --silent          Disable error logging

@@ -41,6 +41,21 @@ describe('is-stalemate', () => {
   })
 })
 
+describe('moves', () => {
+  test('missing params', () => {
+    expect(() => cli(['moves'])).toThrowError()
+  })
+
+  test('invalid position', () => {
+    expect(() => cli(['moves', initialPosition, 'whoops'])).toThrowError()
+  })
+
+  test('success', () => {
+    const output = cli(['moves', initialPosition, 'e4'])
+    expect(output).toBe('e4e5,e4e6')
+  })
+})
+
 describe('parse', () => {
   test('missing params', () => {
     expect(() => cli(['parse'])).toThrowError()
