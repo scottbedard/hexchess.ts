@@ -37,18 +37,19 @@ A bundled version is also available via CDN, with the library exposed globally a
 The following command line interface is available via `node index.mjs`
 
 ```
-@bedard/hexchess
+@bedard/hexchess - 1.3.0
 
 Commands:
-  apply <fen> <moves>     Apply legal moves to a position
-  is-checkmate <fen>      Test if the board is in checkmate
-  is-stalemate <fen>      Test if the board is in stalemate
-  moves <fen> <position>  Get CSV of all legal moves from a position
-  parse <fen>             Parse FEN string to JSON
-  stringify <json>        Stringify JSON to FEN string
+  apply <fen> <moves>     apply whitespace separated moves to a position
+  is-checkmate <fen>      test if the board is in checkmate
+  is-stalemate <fen>      test if the board is in stalemate 
+  moves <fen> <position>  get CSV of all legal moves from a position
+  parse <fen>             parse FEN string to JSON
+  stringify <json>        stringify JSON to FEN string
 
 Options:
-  -s, --silent          Disable error logging
+  -h, --help              display help for command
+  -s, --silent            silence error messages
 ```
 
 ## Basic usage

@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build": "tsc --project ./tsconfig.json --emitDeclarationOnly && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "cli": "node ./index.mjs",
     "lint:fix": "eslint --fix",
     "lint": "eslint",
     "test:coverage": "vitest --coverage",

@@ -40,13 +40,7 @@ export default defineConfig([
       typescript(),
       {
         name: 'version',
-        transform(code, id) {
-          if (id.endsWith('cli.ts')) {
-            return {
-              code: code.replace(/major\.minor\.patch/, version),
-            }
-          }
-        },
+        transform: code => code.replace(/major\.minor\.patch/, version),
       },
     ],
   },

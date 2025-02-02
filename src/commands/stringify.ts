@@ -1,6 +1,18 @@
 import { Hexchess } from '@/hexchess'
 
-export function stringifyCommand(params: string[]) {
+export const stringifySummary = 'stringify JSON to FEN string'
+
+export function stringifyCommand(params: string[], help: boolean) {
+  if (help) {
+    return `@bedard/hexchess - major.minor.patch
+
+Command:
+  stringify <json>  ${stringifySummary}
+
+Parameters:
+  <json>  json representation of game`
+  }
+
   const [json] = params
 
   if (typeof json !== 'string') {
