@@ -1,5 +1,4 @@
 import { applyCommand } from './commands/apply'
-import { error } from './utils'
 import { isCheckmateCommand } from './commands/is-checkmate'
 import { isStalemateCommand } from './commands/is-stalemate'
 import { movesCommand } from './commands/moves'
@@ -7,9 +6,6 @@ import { parseCommand } from './commands/parse'
 import { stringifyCommand } from './commands/stringify'
 
 export default function run(args: string[]): string | undefined {
-  //
-  // home screen
-  //
   if (args.length === 0) {
     return `@bedard/hexchess - major.minor.patch
 
@@ -23,7 +19,7 @@ Commands:
 
 Options:
   -h, --help              Display help for command
-  -s, --silent            Silence error logging`
+  -s, --silent            Silence error messages`
   }
 
   // parse command and parameters
@@ -38,5 +34,5 @@ Options:
     case 'stringify': return stringifyCommand(params)
   }
 
-  error('Unknown command')
+  throw 'unknown command'
 }
