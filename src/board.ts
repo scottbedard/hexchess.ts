@@ -1,3 +1,4 @@
+import { error } from './utils'
 import { graph, positions, promotionPositions } from './constants'
 import type { Board, Color, Direction, Move, Piece, Position } from './types'
 
@@ -72,7 +73,7 @@ export function parseBoard(source: string): Board {
   }
 
   if (normalized.length !== positions.length) {
-    throw new Error('Parse board failed: invalid length')
+    error('parse error: invalid length')
   }
 
   let black = false
@@ -84,14 +85,14 @@ export function parseBoard(source: string): Board {
 
     if (piece === 'k') {
       if (black) {
-        throw new Error('Parse board failed: multiple black kings')
+        error('parse error: multiple black kings')
       }
 
       black = true
       board[position] = 'k'
     } else if (piece === 'K') {
       if (white) {
-        throw new Error('Parse board failed: multiple white kings')
+        error('parse error: multiple white kings')
       }
 
       white = true
@@ -110,7 +111,7 @@ export function parseBoard(source: string): Board {
     ) {
       board[position] = piece
     } else if (piece !== '_') {
-      throw new Error('Parse board failed: invalid piece')
+      error('parse error: invalid piece')
     }
   }
 
@@ -124,7 +125,7 @@ export function parseMove(source: string): Move {
   const from = positions.find(position => source.startsWith(position))
 
   if (!from) {
-    throw new Error('Parse move failed: invalid from position')
+    error('parse error: invalid from position')
   }
 
   let rest = source.slice(from.length)
@@ -132,11 +133,11 @@ export function parseMove(source: string): Move {
   const to = positions.find(position => rest.startsWith(position))
 
   if (!to) {
-    throw new Error('Parse move failed: invalid to position')
+    error('parse error: invalid to position')
   }
 
   if (from === to) {
-    throw new Error('Parse move failed: identical from and to positions')
+    error('parse error: identical from and to positions')
   }
 
   rest = rest.slice(to.length)
@@ -152,13 +153,13 @@ export function parseMove(source: string): Move {
         !promotionPositions['b'].includes(to) &&
         !promotionPositions['w'].includes(to)
       ) {
-        throw new Error('Parse move failed: invalid promotion position')
+        error('parse error: invalid promotion position')
       }
 
       return { from, to, promotion: rest }
     }
 
-    throw new Error('Parse move failed: invalid promotion')
+    error('parse error: invalid promotion')
   }
 
   return { from, to }

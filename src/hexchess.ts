@@ -7,6 +7,7 @@ import {
   stringifyBoard,
   stringifyMove
 } from './board'
+import { error } from './utils'
 import { getBishopMoves } from './pieces/bishop'
 import { getKingMoves } from './pieces/king'
 import { getKnightMoves } from './pieces/knight'
@@ -69,7 +70,7 @@ export class Hexchess {
     if (turn === 'w' || turn === 'b') {
       this.turn = turn
     } else {
-      throw new Error('Parse fen failed: invalid turn color')
+      error('parse failed: invalid turn color')
     }
 
     if (ep === '-') {
@@ -77,7 +78,7 @@ export class Hexchess {
     } else if (isPosition(ep)) {
       this.ep = ep
     } else {
-      throw new Error('Parse fen failed: invalid en passant')
+      error('parse failed: invalid en passant')
     }
 
     this.halfmove = Math.max(0, parseInt(halfmove, 10))
@@ -102,11 +103,11 @@ export class Hexchess {
       const piece = clone.board[move.from]
 
       if (!piece) {
-        throw new Error(`invalid move at index ${i}: ${sequence[i]}, piece not found`)
+        error(`invalid move at index ${i}: ${sequence[i]}`)
       }
 
       if (getColor(piece) !== clone.turn) {
-        throw new Error(`invalid move at index ${i}: ${sequence[i]}, out of turn}`)
+        error(`out of turn at index ${i}: ${sequence[i]}`)
       }
 
       clone.applyUnsafe(move)
@@ -129,7 +130,7 @@ export class Hexchess {
     const piece = this.board[move.from]
 
     if (!piece) {
-      throw new Error(`invalid move: ${stringifyMove(move)}, piece not found`)
+      error(`piece not found: ${stringifyMove(move)}`)
     }
 
     // update halfmove
@@ -158,7 +159,7 @@ export class Hexchess {
       } else if (piece === 'P' && promotionPositions.w.includes(move.to)) {
         this.board[move.to] = move.promotion.toUpperCase() as Piece
       } else {
-        throw new Error(`illegal promotion: ${stringifyMove(move)}`)
+        error(`illegal promotion: ${stringifyMove(move)}`)
       }
     } else {
       this.board[move.to] = piece
