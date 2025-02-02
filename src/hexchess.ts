@@ -130,7 +130,7 @@ export class Hexchess {
     const piece = this.board[move.from]
 
     if (!piece) {
-      error(`piece not found: ${stringifyMove(move)}`)
+      error(`piece not found: ${stringifyMove(move)}, `)
     }
 
     // update halfmove
@@ -191,15 +191,15 @@ export class Hexchess {
       else if (move.from === 'k7' && move.to === 'k5') this.ep = 'k6'
       else this.ep = null
     } else if (piece === 'P') {
-      if (move.from === 'b1', move.to === 'b3') this.ep = 'b2'
-      else if (move.from === 'c2', move.to === 'c4') this.ep = 'c3'
-      else if (move.from === 'd3', move.to === 'd5') this.ep = 'd4'
-      else if (move.from === 'e4', move.to === 'e6') this.ep = 'e5'
-      else if (move.from === 'f5', move.to === 'f7') this.ep = 'f6'
-      else if (move.from === 'g4', move.to === 'g6') this.ep = 'g5'
-      else if (move.from === 'h3', move.to === 'h5') this.ep = 'h4'
-      else if (move.from === 'i2', move.to === 'i4') this.ep = 'i3'
-      else if (move.from === 'k1', move.to === 'k3') this.ep = 'k2'
+      if (move.from === 'b1' && move.to === 'b3') this.ep = 'b2'
+      else if (move.from === 'c2' && move.to === 'c4') this.ep = 'c3'
+      else if (move.from === 'd3' && move.to === 'd5') this.ep = 'd4'
+      else if (move.from === 'e4' && move.to === 'e6') this.ep = 'e5'
+      else if (move.from === 'f5' && move.to === 'f7') this.ep = 'f6'
+      else if (move.from === 'g4' && move.to === 'g6') this.ep = 'g5'
+      else if (move.from === 'h3' && move.to === 'h5') this.ep = 'h4'
+      else if (move.from === 'i2' && move.to === 'i4') this.ep = 'i3'
+      else if (move.from === 'k1' && move.to === 'k3') this.ep = 'k2'
       else this.ep = null
     }
   }
