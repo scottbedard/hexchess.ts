@@ -130,7 +130,7 @@ export const startingPositions: Record<Color, Vec<9, typeof positions[number]>> 
  */
 export const graph: Record<
   typeof positions[number],
-  Vec<12, typeof positions[number] | undefined>
+  (typeof positions[number] | undefined)[]
 > = {
   a1: [
     'a2',
@@ -138,13 +138,6 @@ export const graph: Record<
     'b2',
     'c2',
     'b1',
-    ,
-    ,
-    ,
-    ,
-    ,
-    ,
-    ,
   ],
   a2: [
     'a3',
@@ -154,11 +147,6 @@ export const graph: Record<
     'b2',
     'b1',
     'a1',
-    ,
-    ,
-    ,
-    ,
-    ,
   ],
   a3: [
     'a4',
@@ -168,11 +156,6 @@ export const graph: Record<
     'b3',
     'b2',
     'a2',
-    ,
-    ,
-    ,
-    ,
-    ,
   ],
   a4: [
     'a5',
@@ -182,11 +165,6 @@ export const graph: Record<
     'b4',
     'b3',
     'a3',
-    ,
-    ,
-    ,
-    ,
-    ,
   ],
   a5: [
     'a6',
@@ -196,11 +174,6 @@ export const graph: Record<
     'b5',
     'b4',
     'a4',
-    ,
-    ,
-    ,
-    ,
-    ,
   ],
   a6: [
     ,
@@ -210,11 +183,6 @@ export const graph: Record<
     'b6',
     'b5',
     'a5',
-    ,
-    ,
-    ,
-    ,
-    ,
   ],
   b1: [
     'b2',
@@ -298,7 +266,6 @@ export const graph: Record<
     'a5',
     ,
     'a6',
-    ,
   ],
   b7: [
     ,
@@ -310,9 +277,6 @@ export const graph: Record<
     'b6',
     'a5',
     'a6',
-    ,
-    ,
-    ,
   ],
   c1: [
     'c2',
@@ -410,7 +374,6 @@ export const graph: Record<
     'b6',
     'a6',
     'b7',
-    ,
   ],
   c8: [
     ,
@@ -422,9 +385,6 @@ export const graph: Record<
     'c7',
     'b6',
     'b7',
-    ,
-    ,
-    ,
   ],
   d1: [
     'd2',
@@ -536,7 +496,6 @@ export const graph: Record<
     'c7',
     'b7',
     'c8',
-    ,
   ],
   d9: [
     ,
@@ -676,7 +635,6 @@ export const graph: Record<
     'd8',
     'c8',
     'd9',
-    ,
   ],
   e10: [
     ,
@@ -688,9 +646,6 @@ export const graph: Record<
     'e9',
     'd8',
     'd9',
-    ,
-    ,
-    ,
   ],
   f1: [
     'f2',
@@ -830,7 +785,6 @@ export const graph: Record<
     'e9',
     'd9',
     'e10',
-    ,
   ],
   f11: [
     ,
@@ -842,9 +796,6 @@ export const graph: Record<
     'f10',
     'e9',
     'e10',
-    ,
-    ,
-    ,
   ],
   g1: [
     'g2',
@@ -984,7 +935,6 @@ export const graph: Record<
     'f10',
     'e10',
     'f11',
-    ,
   ],
   h1: [
     'h2',
@@ -1110,7 +1060,6 @@ export const graph: Record<
     'g9',
     'f10',
     'g10',
-    ,
   ],
   i1: [
     'i2',
@@ -1222,7 +1171,6 @@ export const graph: Record<
     'h8',
     'g9',
     'h9',
-    ,
   ],
   k1: [
     'k2',
@@ -1320,7 +1268,6 @@ export const graph: Record<
     'i7',
     'h8',
     'i8',
-    ,
   ],
   l1: [
     'l2',
@@ -1404,6 +1351,5 @@ export const graph: Record<
     'k6',
     'i7',
     'k7',
-    ,
   ],
 } as const
