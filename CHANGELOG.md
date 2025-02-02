@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1
+
+- Added `-h` and `--help` option to CLI commands
+- Removed trailing `undefined` from graph
+
 ## 1.3.0
 
 - Add `moves` command to CLI
