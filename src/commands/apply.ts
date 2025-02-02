@@ -10,8 +10,8 @@ Command:
   apply <fen> <moves>   ${applySummary}
 
 Parameters:
-  <fen>     string representation of game
-  <moves>   whitespace separated list of moves`
+  <fen>                 string representation of game
+  <moves>               whitespace separated list of moves`
   }
 
   const [fen, moves] = params

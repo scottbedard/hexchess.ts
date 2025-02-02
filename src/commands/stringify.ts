@@ -10,7 +10,7 @@ Command:
   stringify <json>  ${stringifySummary}
 
 Parameters:
-  <json>  json representation of game`
+  <json>            json representation of game`
   }
 
   const [json] = params

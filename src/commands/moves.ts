@@ -11,8 +11,8 @@ Command:
   moves <fen> <position>  ${movesSummary}
 
 Parameters:
-  <fen>       string representation of game
-  <position>  board coordinate`
+  <fen>                   string representation of game
+  <position>              board coordinate`
   }
 
   const [fen, position] = params

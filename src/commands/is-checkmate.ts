@@ -1,6 +1,6 @@
 import { Hexchess } from '@/hexchess'
 
-export const isCheckmateSummary = 'test if the board is in checkmate'
+export const isCheckmateSummary = 'test if board is in checkmate'
 
 export function isCheckmateCommand(params: string[], help: boolean) {
   if (help) {
@@ -10,7 +10,7 @@ Command:
   is-checkmate <fen>  ${isCheckmateSummary}
 
 Parameters:
-  <fen>   string representation of game`
+  <fen>               string representation of game`
   }
 
   const [fen] = params

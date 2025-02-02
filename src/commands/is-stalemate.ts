@@ -1,6 +1,6 @@
 import { Hexchess } from '@/hexchess'
 
-export const isStalemateSummary = 'test if the board is in stalemate '
+export const isStalemateSummary = 'test if board is in stalemate '
 
 export function isStalemateCommand(params: string[], help: boolean) {
   if (help) {
@@ -10,7 +10,7 @@ Command:
   is-stalemate <fen>  ${isStalemateSummary}
 
 Parameters:
-  <fen>   string representation of game`
+  <fen>               string representation of game`
   }
 
   const [fen] = params

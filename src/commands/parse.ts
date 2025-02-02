@@ -10,7 +10,7 @@ Command:
   parse <fen>   ${parseSummary}
 
 Parameters:
-  <fen>   string representation of game`
+  <fen>         string representation of game`
   }
 
   const [fen] = params
