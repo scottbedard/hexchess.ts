@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0
+
+- Add `Move` support to `apply` method
+
 ## 1.3.1
 
 - Added `-h` and `--help` option to CLI commands
