@@ -144,7 +144,15 @@ describe('initialization', () => {
 })
 
 describe('apply', () => {
-  test('single move', () => {
+  test('move', () => {
+    const hexchess = Hexchess.init()
+
+    hexchess.apply({ from: 'g4', to: 'g5' })
+
+    expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1')
+  })
+
+  test('san', () => {
     const hexchess = Hexchess.init()
 
     hexchess.apply('g4g5')

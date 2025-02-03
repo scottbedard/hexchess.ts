@@ -64,12 +64,14 @@ const hexchess = new Hexchess()
 
 #### `apply`
 
-Execute a whitespace-separated series of moves.
+Execute a whitespace separated sequence of moves, or a single `Move` object.
 
 ```ts
 const hexchess = Hexchess.init()
 
-hexchess.apply('g4g5 e7e6 f5f6 e6f6 g5f6')
+hexchess.apply('g4g5 e7e6 f5f6 e6f6')
+
+hexchess.apply({ from: 'g5', to: 'f6' })
 
 hexchess.toString() // 'b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1'
 ```

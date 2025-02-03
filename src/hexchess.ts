@@ -89,13 +89,15 @@ export class Hexchess {
   /**
    * Apply legal moves to the game
    */
-  apply(source: string): void {
+  apply(source: Move | string): void {
     const clone = this.clone()
 
-    const sequence = source
-      .split(' ')
-      .map(str => str.trim())
-      .filter(str => str)
+    const sequence = typeof source === 'string'
+      ? source
+        .split(' ')
+        .map(str => str.trim())
+        .filter(str => str)
+      : [`${source.from}${source.to}${source.promotion ?? ''}`]
 
     for (let i = 0; i < sequence.length; i++) {
       const move = parseMove(sequence[i])
