@@ -1,4 +1,13 @@
 export {
+  createBoard,
+  getColor,
+  parseBoard,
+  parseMove,
+  stringifyBoard,
+  stringifyMove
+} from './board'
+
+export {
   emptyPosition,
   initialPosition,
   positions

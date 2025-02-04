@@ -212,6 +212,70 @@ const hexchess = new Hexchess()
 hexchess.toString() // '1/3/5/7/9/11/11/11/11/11/11 w - 0 1'
 ```
 
+## Advanced usage
+
+Several functions are exposed for manually working with the board and pieces.
+
+#### `createBoard`
+
+Create an empty `Board` object.
+
+```ts
+import { createBoard } from '@bedard/hexchess'
+
+createBoard() // { f11: null, ... }
+```
+
+#### `getColor`
+
+Determine the `Color` of a `Piece`.
+
+```ts
+import { getColor } from '@bedard/hexchess'
+
+getColor('P') // 'w'
+```
+
+#### `parseBoard`
+
+Parse the board portion of a FEN to `Board` object.
+
+```ts
+import { parseBoard } from '@bedard/hexchess'
+
+parseBoard('1/3/5/7/9/11/11/11/11/11/11') // { f11: null, ... }
+```
+
+#### `parseMove`
+
+Parse SAN string to a `Move` object.
+
+```ts
+import { parseMove } from '@bedard/hexchess'
+
+parseMove('f10f11q') // { from: 'f10', to: 'f11', promotion: 'q' }
+```
+
+#### `stringifyBoard`
+
+Format `Board` object as a FEN.
+
+```ts
+import { createBoard, stringifyBoard } from '@bedard/hexchess'
+
+stringifyBoard(createBoard()) // '1/3/5/7/9/11/11/11/11/11/11'
+```
+
+#### `stringifyMove`
+
+Format `Move` object as SAN string.
+
+```ts
+import { stringifyMove } from '@bedard/hexchess'
+
+stringifyMove({ from: 'f10', to: 'f11', promotion: 'q' }) // 'f10f11q'
+```
+
 ## License
 
 [MIT](https://github.com/scottbedard/hexchess.ts/blob/main/LICENSE)

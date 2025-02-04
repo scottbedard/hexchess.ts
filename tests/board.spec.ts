@@ -1,8 +1,21 @@
-import { createBoard, isPosition, parseBoard, parseMove, stringifyBoard, stringifyMove, walk } from '@/board'
+import { isPosition, walk } from '@/board'
 import { describe, expect, test } from 'vitest'
-import { Hexchess } from '@/index'
 import { emptyPosition, initialPosition, positions } from '@/constants'
 import type { Direction, Position } from '@/types'
+import {
+  createBoard,
+  getColor,
+  Hexchess,
+  parseBoard,
+  parseMove,
+  stringifyBoard,
+  stringifyMove
+} from '@/index'
+
+test('getColor', () => {
+  expect(getColor('P')).toBe('w')
+  expect(getColor('p')).toBe('b')
+})
 
 test('isPosition', () => {
   for (let i = 0; i < positions.length; i++) {
