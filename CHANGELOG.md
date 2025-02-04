@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.0
+
+- Exposed utils for advanced use, [see docs here &rarr;](https://github.com/scottbedard/hexchess.ts?tab=readme-ov-file#advanced-usage)
+  - `createBoard`
+  - `getColor`
+  - `parseBoard`
+  - `parseMove`
+  - `stringifyBoard`
+  - `stringifyMove` 
+
 ## 1.4.0
 
 - Add `Move` support to `apply` method
