@@ -261,9 +261,9 @@ parseMove('f10f11q') // { from: 'f10', to: 'f11', promotion: 'q' }
 Format `Board` object as a FEN.
 
 ```ts
-import { createBoard, stringifyBoard } from '@bedard/hexchess'
+import { stringifyBoard } from '@bedard/hexchess'
 
-stringifyBoard(createBoard()) // '1/3/5/7/9/11/11/11/11/11/11'
+stringifyBoard(board) // '1/3/5/7/9/11/11/11/11/11/11'
 ```
 
 #### `stringifyMove`
