@@ -256,6 +256,13 @@ export class Hexchess {
   }
 
   /**
+   * Create an empty board
+   */
+  static empty() {
+    return new Hexchess()
+  }
+
+  /**
    * Find a player's king
    */
   findKing(color: Color): Position | null {
@@ -268,6 +275,13 @@ export class Hexchess {
     }
 
     return null
+  }
+
+  /**
+   * Create game from arbitrary position
+   */
+  static from(fen: string) {
+    return new Hexchess(fen)
   }
 
   /**
@@ -289,8 +303,14 @@ export class Hexchess {
   /**
    * Create hexchess in initial position
    */
-  static init() {
-    return new Hexchess(initialPosition)
+  static init(moves?: string) {
+    const instance = new Hexchess(initialPosition)
+
+    if (moves) {
+      instance.apply(moves)
+    }
+
+    return instance
   }
 
   /**

@@ -59,7 +59,17 @@ Instantiate a `Hexchess` class with an initial [FEN](https://en.wikipedia.org/wi
 ```ts
 import { Hexchess } from '@bedard/hexchess'
 
-const hexchess = new Hexchess()
+// create game in the starting position
+Hexchess.init()
+
+// create game with moves applied
+Hexchess.init('g4g5 e7e6')
+
+// create game with empty board
+Hexchess.empty()
+
+// create game from an arbitrary position
+Hexchess.from('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w - 0 1')
 ```
 
 #### `apply`

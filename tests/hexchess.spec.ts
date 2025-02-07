@@ -484,6 +484,14 @@ describe('currentMoves', () => {
   })
 })
 
+describe('empty', () => {
+  test('creates empty board', () => {
+    const hexchess = Hexchess.empty()
+
+    expect(hexchess.toString()).toBe(emptyPosition)
+  })
+})
+
 describe('findKing', () => {
   test('black', () => {
     const hexchess = Hexchess.init()
@@ -502,6 +510,29 @@ describe('findKing', () => {
 
     expect(hexchess.findKing('b')).toBe(null)
     expect(hexchess.findKing('w')).toBe(null)
+  })
+})
+
+describe('from', () => {
+  test('returns piece at position', () => {
+    const hexchess = Hexchess.from('1/3/5/7/9/5p5/11/11/11/11/11 w - 0 1')
+
+    expect(hexchess.board.f6).toBe('p')
+  })
+})
+
+describe('init', () => {
+  test('creates initial board', () => {
+    const hexchess = Hexchess.init()
+
+    expect(hexchess.toString()).toBe(initialPosition)
+  })
+
+  test('create instance with applied moves', () => {
+    const hexchess = new Hexchess(initialPosition)
+    const output = hexchess.apply('g4g5').toString()
+
+    expect(Hexchess.init('g4g5').toString()).toBe(output)
   })
 })
 
