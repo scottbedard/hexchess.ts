@@ -89,7 +89,7 @@ export class Hexchess {
   /**
    * Apply legal moves to the game
    */
-  apply(source: Move | string): void {
+  apply(source: Move | string): Hexchess {
     const clone = this.clone()
 
     const sequence = typeof source === 'string'
@@ -123,12 +123,15 @@ export class Hexchess {
     for (const position of positions) {
       this.board[position] = clone.board[position]
     }
+
+    return this
   }
 
   /**
    * Apply a move, regardless of turn or legality
    */
-  applyUnsafe(move: Move): void {
+  applyUnsafe(source: Move | string): Hexchess {
+    const move = typeof source === 'string' ? parseMove(source) : source
     const piece = this.board[move.from]
 
     if (!piece) {
@@ -204,17 +207,21 @@ export class Hexchess {
       else if (move.from === 'k1' && move.to === 'k3') this.ep = 'k2'
       else this.ep = null
     }
+
+    return this
   }
 
   /**
    * Clear all data from the instance
    */
-  clear() {
+  clear(): Hexchess {
     this.ep = null
     this.turn = 'w'
     this.halfmove = 0
     this.fullmove = 1
     Object.assign(this.board, createBoard())
+
+    return this
   }
 
   /**
@@ -367,10 +374,12 @@ export class Hexchess {
   /**
    * Reset the game to initial position
    */
-  reset() {
+  reset(): Hexchess {
     this.clear()
 
     Object.assign(this.board, parseBoard('b/qbk/n1b1n/r5r/ppppppppp/11/5P5/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1'))
+
+    return this
   }
 
   /**

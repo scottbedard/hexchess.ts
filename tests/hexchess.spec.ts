@@ -152,6 +152,12 @@ describe('apply', () => {
     expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1')
   })
 
+  test('return instance', () => {
+    const hexchess = Hexchess.init()
+
+    expect(hexchess.apply('g4g5')).toBe(hexchess)
+  })
+
   test('san', () => {
     const hexchess = Hexchess.init()
 
@@ -415,6 +421,20 @@ describe('applyUnsafe', () => {
     expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppPpppp/11/11/4P1P4/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b f6 0 1')
   })
 
+  test('string', () => {
+    const hexchess = Hexchess.init()
+
+    hexchess.applyUnsafe('g4g5')
+
+    expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1')
+  })
+
+  test('return instance', () => {
+    const hexchess = Hexchess.init()
+
+    expect(hexchess.applyUnsafe('g4g5')).toBe(hexchess)
+  })
+
   test('piece not found', () => {
     const hexchess = new Hexchess()
 
@@ -433,6 +453,12 @@ describe('clear', () => {
     hexchess.clear()
 
     expect(hexchess.toString()).toEqual(emptyPosition)
+  })
+
+  test('return instance', () => {
+    const hexchess = Hexchess.init()
+
+    expect(hexchess.clear()).toBe(hexchess)
   })
 })
 
@@ -612,6 +638,12 @@ describe('reset', () => {
     hexchess.reset()
 
     expect(hexchess.toString()).toEqual(initialPosition)
+  })
+
+  test('return instance', () => {
+    const hexchess = new Hexchess()
+
+    expect(hexchess.reset()).toBe(hexchess)
   })
 })
 
