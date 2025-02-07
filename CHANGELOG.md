@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.0
+
+- Add `empty` and `from` static helpers
+- Expand `init` signature to accept string of moves from the starting position
+
 ## 1.6.0
 
 - Improve return types to enable method chaining
