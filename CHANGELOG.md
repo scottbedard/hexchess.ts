@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0
+
+- Improve return types to enable method chaining
+- Added support for string moves to `applyUnsafe`
+
 ## 1.5.0
 
 - Exposed utils for advanced use, [see docs here &rarr;](https://github.com/scottbedard/hexchess.ts?tab=readme-ov-file#advanced-usage)
