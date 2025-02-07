@@ -514,7 +514,7 @@ describe('findKing', () => {
 })
 
 describe('from', () => {
-  test('returns piece at position', () => {
+  test('creates game by fen', () => {
     const hexchess = Hexchess.from('1/3/5/7/9/5p5/11/11/11/11/11 w - 0 1')
 
     expect(hexchess.board.f6).toBe('p')

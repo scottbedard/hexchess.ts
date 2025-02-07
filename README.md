@@ -54,18 +54,18 @@ Options:
 
 ## Basic usage
 
-Instantiate a `Hexchess` class with an initial [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation). Note that since castling is not permitted, that section of the FEN is omitted. If no FEN is provided, the board will be empty.
+Instantiate a `Hexchess` class with an initial [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation). Note that since castling is not permitted, that section of the FEN is omitted. If no FEN is provided, the board will be empty. The following static methods are also available to construct games in a particular state.
 
 ```ts
 import { Hexchess } from '@bedard/hexchess'
 
-// create game in the starting position
+// create new game in the starting position
 Hexchess.init()
 
-// create game with moves applied
+// create new game with initial moves applied
 Hexchess.init('g4g5 e7e6')
 
-// create game with empty board
+// create game with an empty board
 Hexchess.empty()
 
 // create game from an arbitrary position
