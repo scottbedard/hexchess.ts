@@ -37,7 +37,7 @@ A bundled version is also available via CDN, with the library exposed globally a
 The following command line interface is available via `node index.mjs`
 
 ```
-@bedard/hexchess - 1.5.0
+@bedard/hexchess - 1.6.0
 
 Commands:
   apply <fen> <moves>     apply whitespace separated moves to a position
