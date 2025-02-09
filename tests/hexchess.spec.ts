@@ -152,6 +152,16 @@ describe('apply', () => {
     expect(hexchess.toString()).toBe('b/qbk/n1b1n/r5r/ppppppppp/11/5PP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 b - 0 1')
   })
 
+  test('irregular whitespace', () => {
+    expect(Hexchess.init().apply('').toString()).toBe(initialPosition)
+
+    const expected = 'b/qbk/n1b1n/r5r/ppp1ppppp/11/4pPP4/4P6/3P1B1P3/2P2B2P2/1PRNQBKNRP1 w e6 0 2'
+
+    expect(Hexchess.init().apply('g4g5  e7e5').toString()).toBe(expected)
+    expect(Hexchess.init().apply(' g4g5  e7e5').toString()).toBe(expected)
+    expect(Hexchess.init().apply(' g4g5   e7e5 ').toString()).toBe(expected)
+  })
+
   test('return instance', () => {
     const hexchess = Hexchess.init()
 
