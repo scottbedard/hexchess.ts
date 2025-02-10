@@ -34,85 +34,79 @@ export function isPosition(source: string): source is Position {
 export function parseBoard(source: string): Board {
   const board = createBoard()
 
-  let normalized = ''
+  let black = false
+  let white = false
+  let j = 0
 
   for (let i = 0; i < source.length; i++) {
     const current = source[i]
+    const position = positions[j]
 
-    if (current === '1') {
-      const next = source[i + 1]
+    switch (current) {
+      case '1':
+        switch (source[i + 1]) {
+          case '0':
+            j += 10
+            i++
+            continue
+          case '1':
+            j += 11
+            i++
+            continue
+          default:
+            j++
+            continue
+        }
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        j += parseInt(current, 10)
+        continue
+      case 'K':
+        if (white) {
+          error('parse failed: multiple white kings')
+        }
 
-      if (next === '0') {
-        i++
-        normalized += '__________'
-      } else if (next === '1') {
-        i++
-        normalized += '___________'
-      } else {
-        normalized += '_'
-      }
-    } else if (current === '2') {
-      normalized += '__'
-    } else if (current === '3') {
-      normalized += '___'
-    } else if (current === '4') {
-      normalized += '____'
-    } else if (current === '5') {
-      normalized += '_____'
-    } else if (current === '6') {
-      normalized += '______'
-    } else if (current === '7') {
-      normalized += '_______'
-    } else if (current === '8') {
-      normalized += '________'
-    } else if (current === '9') {
-      normalized += '_________'
-    } else if (current !== '/') {
-      normalized += source[i]
+        white = true
+        board[position] = 'K'
+        j++
+        continue
+      case 'k':
+        if (black) {
+          error('parse failed: multiple black kings')
+        }
+
+        black = true
+        board[position] = 'k'
+        j++
+        continue
+      case 'b':
+      case 'B':
+      case 'n':
+      case 'N':
+      case 'p':
+      case 'P':
+      case 'Q':
+      case 'q':
+      case 'r':
+      case 'R':
+        board[position] = current
+        j++
+        continue
+      case '/':
+        continue
     }
+
+    error(`parse failed: invalid piece ${current}`)
   }
 
-  if (normalized.length !== positions.length) {
+  if (j !== 91) {
     error('parse failed: invalid length')
-  }
-
-  let black = false
-  let white = false
-
-  for (let i = 0; i < positions.length; i++) {
-    const piece = normalized[i]
-    const position = positions[i]
-
-    if (piece === 'k') {
-      if (black) {
-        error('parse failed: multiple black kings')
-      }
-
-      black = true
-      board[position] = 'k'
-    } else if (piece === 'K') {
-      if (white) {
-        error('parse failed: multiple white kings')
-      }
-
-      white = true
-      board[position] = 'K'
-    } else if (
-      piece === 'p' ||
-      piece === 'r' ||
-      piece === 'n' ||
-      piece === 'b' ||
-      piece === 'q' ||
-      piece === 'P' ||
-      piece === 'R' ||
-      piece === 'N' ||
-      piece === 'B' ||
-      piece === 'Q'
-    ) {
-      board[position] = piece
-    } else if (piece !== '_') {
-      error('parse failed: invalid piece')
-    }
   }
 
   return board
