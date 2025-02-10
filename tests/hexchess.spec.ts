@@ -420,6 +420,12 @@ describe('apply', () => {
 
     expect(() => hexchess.apply('e7e6')).toThrow()
   })
+
+  test('illegal sequence', () => {
+    const hexchess = new Hexchess()
+
+    expect(() => hexchess.apply('b1f11')).toThrow()
+  })
 })
 
 describe('applyUnsafe', () => {
@@ -543,6 +549,10 @@ describe('init', () => {
     const output = hexchess.apply('g4g5').toString()
 
     expect(Hexchess.init('g4g5').toString()).toBe(output)
+  })
+
+  test('does not init illegal sequences', () => {
+    expect(() => Hexchess.init('b1f11')).toThrow()
   })
 })
 

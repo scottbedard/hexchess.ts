@@ -112,7 +112,15 @@ export class Hexchess {
         error(`out of turn at index ${i}: ${sequence[i]}`)
       }
 
-      clone.applyUnsafe(move)
+      if (
+        clone
+          .moves(move.from)
+          .some(obj => obj.from === move.from && obj.to === move.to && obj.promotion == move.promotion)
+      ) {
+        clone.applyUnsafe(move)
+      } else {
+        error(`illegal move at index ${i}: ${sequence[i]}`)
+      }
     }
 
     this.turn = clone.turn
