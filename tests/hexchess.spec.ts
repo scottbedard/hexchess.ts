@@ -456,6 +456,12 @@ describe('applyUnsafe', () => {
 
     expect(() => hexchess.applyUnsafe({ from: 'a1', to: 'a2' })).toThrow()
   })
+
+  test('illegal promotion', () => {
+    const hexchess = Hexchess.from('1/3/2P2/7/9/11/11/11/11/11/11 w - 0 1')
+
+    expect(() => hexchess.applyUnsafe({ from: 'f9', to: 'f10', promotion: 'q' })).toThrow()
+  })
 })
 
 describe('clear', () => {
