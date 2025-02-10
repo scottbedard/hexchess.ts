@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.1
+
+- Fix illegal move sequences
+
 ## 1.7.0
 
 - Add `empty` and `from` static helpers
