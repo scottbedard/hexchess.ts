@@ -237,6 +237,10 @@ describe('parseBoard', () => {
   test('error: invalid piece', () => {
     expect(() => parseBoard('x/3/5/7/9/11/11/11/11/11/11')).toThrowError()
   })
+
+  test('error: overflow', () => {
+    expect(() => parseBoard('1/3/5/7/9/11/11/11/11/11/11p')).toThrowError()
+  })
 })
 
 describe('parseMove', () => {
