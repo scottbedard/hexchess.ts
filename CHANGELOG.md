@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.2
+
+- Improve performance of `parseBoard`
+
 ## 1.7.1
 
 - Fix illegal move sequences
