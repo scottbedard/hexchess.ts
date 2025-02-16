@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.0
+
+- Add `current-moves` command to CLI
+
 ## 1.7.2
 
 - Improve performance of `parseBoard`
