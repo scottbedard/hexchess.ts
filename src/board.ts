@@ -116,17 +116,27 @@ export function parseBoard(source: string): Board {
  * Parse move notation
  */
 export function parseMove(source: string): Move {
-  const from = positions.find(position => source.startsWith(position))
+  const fromFile = source[0]
 
-  if (!from) {
+  const fromRank = (source[1] === '1' && (source[2] === '0' || source[2] === '1'))
+    ? `${source[1]}${source[2]}`
+    : source[1]
+
+  const from = `${fromFile}${fromRank}`
+
+  if (!from || !isPosition(from)) {
     error('parse failed: invalid from position')
   }
 
-  let rest = source.slice(from.length)
+  const toFile = source[from.length]
 
-  const to = positions.find(position => rest.startsWith(position))
+  const toRank = (source[from.length + 1] === '1' && (source[from.length + 2] === '0' || source[from.length + 2] === '1'))
+    ? `${source[from.length + 1]}${source[from.length + 2]}`
+    : source[from.length + 1]
 
-  if (!to) {
+  const to = `${toFile}${toRank}`
+
+  if (!to || !isPosition(to)) {
     error('parse failed: invalid to position')
   }
 
@@ -134,14 +144,14 @@ export function parseMove(source: string): Move {
     error('parse failed: identical from and to positions')
   }
 
-  rest = rest.slice(to.length)
+  const promotion = source[from.length + to.length]
 
-  if (rest) {
+  if (promotion) {
     if (
-      rest === 'b' ||
-      rest === 'n' ||
-      rest === 'q' ||
-      rest === 'r'
+      promotion === 'b' ||
+      promotion === 'n' ||
+      promotion === 'q' ||
+      promotion === 'r'
     ) {
       if (
         !promotionPositions['b'].includes(to) &&
@@ -150,7 +160,7 @@ export function parseMove(source: string): Move {
         error('parse failed: invalid promotion position')
       }
 
-      return { from, to, promotion: rest }
+      return { from, to, promotion }
     }
 
     error('parse failed: invalid promotion')
