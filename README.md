@@ -8,6 +8,8 @@
 
 A TypeScript library for [Gliński's hexagonal chess](https://en.wikipedia.org/wiki/Hexagonal_chess#Gli%C5%84ski's_hexagonal_chess), and the brain of [hexchess.club](https://hexchess.club).
 
+> ⚠️ Version 1 of this library is deprecated, and this repository is no longer maintained.<br>[See this repository for newer versions &rarr;](https://github.com/scottbedard/hexchess)
+
 <p align="center">
   <a href="https://hexchess.club">
     <img src="assets/hexchess.svg" width="500" />
